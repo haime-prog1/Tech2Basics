@@ -66,40 +66,54 @@ export async function render(main, [id]) {
       <button class="btn" id="next">Next ›</button>
     </div></div>`;
 
+  /* ----- Card switching -----
+     Only ONE card is shown at a time (the others are hidden).
+     Why not a sideways-scrolling strip? On iPhone, a sideways strip also grabs
+     up/down finger movement, so you couldn't scroll down to the quiz.
+     Now: up/down = normal page scroll; a clear left/right swipe = change card. */
   const deck = $('#deck');
-  const index = () => Math.round(deck.scrollLeft / deck.clientWidth);
-  const go = (i) => deck.scrollTo({ left: Math.max(0, Math.min(total - 1, i)) * deck.clientWidth, behavior: 'smooth' });
-
-  // Update the dots and buttons while swiping
-  // Make the deck as tall as the CURRENT card only, so short cards don't leave a big empty gap.
   const slides = $$('.slide', deck);
-  const fitHeight = () => {
-    const s = slides[index()];
-    if (s && deck.isConnected) deck.style.height = s.offsetHeight + 'px'; // skip if we already left this lesson
-  };
-  fitHeight();
-  window.addEventListener('resize', fitHeight);
-  // The last card grows when quiz feedback appears, so re-measure when it changes size
-  new ResizeObserver(fitHeight).observe(slides[slides.length - 1]);
+  let current = 0;
 
-  deck.addEventListener('scroll', () => {
-    const i = index();
-    fitHeight();
+  function show(i, direction = 0) {
+    i = Math.max(0, Math.min(total - 1, i));
+    if (i === current && direction !== 0) return;
+    current = i;
+    slides.forEach((s, k) => { s.hidden = k !== i; });
+    // Slide-in animation from the side you swiped toward
+    const s = slides[i];
+    s.classList.remove('from-left', 'from-right');
+    if (direction) { void s.offsetWidth; s.classList.add(direction > 0 ? 'from-right' : 'from-left'); }
     $('#lp').style.width = ((i + 1) / total) * 100 + '%'; // lesson progress bar at the top
     $$('.dots i').forEach((d, k) => d.classList.toggle('on', k === i));
     $('#prev').disabled = i === 0;
     $('#next').disabled = i === total - 1;
+    // When changing card, bring the top of the card into view
+    if (direction) deck.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  const go = (i) => show(i, i > current ? 1 : -1);
+  show(0);
+
+  // Swipe detection: remember where the finger started, compare where it ended.
+  let sx = 0, sy = 0;
+  deck.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+  deck.addEventListener('touchend', (e) => {
+    if (e.target.closest('.order-list, input, textarea')) return; // don't steal drags in the quiz
+    const dx = e.changedTouches[0].clientX - sx;
+    const dy = e.changedTouches[0].clientY - sy;
+    // Must be a clear sideways swipe: at least 60px, and more sideways than up/down
+    if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) go(current + (dx < 0 ? 1 : -1));
   }, { passive: true });
-  $('#prev').disabled = true;
-  $('#prev').onclick = () => go(index() - 1);
-  $('#next').onclick = () => go(index() + 1);
+
+  $('#prev').onclick = () => go(current - 1);
+  $('#next').onclick = () => go(current + 1);
   // Keyboard: left/right arrows move cards (when not typing)
   main.onkeydown = (e) => {
     if (e.target.matches('input, textarea')) return;
-    if (e.key === 'ArrowRight') go(index() + 1);
-    if (e.key === 'ArrowLeft') go(index() - 1);
+    if (e.key === 'ArrowRight') go(current + 1);
+    if (e.key === 'ArrowLeft') go(current - 1);
   };
-  $('#say').onclick = () => speak($$('.slide .card')[index()].innerText);
+  $('#say').onclick = () => speak(slides[current].innerText);
 
   // Level toggle: redraw card text, remember the choice
   $$('.levels button').forEach((b) => b.onclick = () => {

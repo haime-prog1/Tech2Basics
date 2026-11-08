@@ -170,9 +170,15 @@ textarea { min-height: 120px; resize: vertical; }
 .deck::-webkit-scrollbar { display: none; }
 /* position: relative keeps hidden screen-reader labels inside their card
    (otherwise they float off to the right and make the whole page scroll sideways) */
-.slide { flex: 0 0 100%; scroll-snap-align: center; position: relative; }
-/* align-items: flex-start = each card is only as tall as its own text */
-.deck { align-items: flex-start; transition: height .2s; }
+.slide { flex: 0 0 100%; position: relative; }
+/* One card shown at a time (see lesson.js). The deck is a normal block, not a sideways scroller. */
+.deck { display: block; overflow: visible; scroll-margin-top: 70px; }
+.slide[hidden] { display: none; }
+.slide.from-right { animation: from-right .28s ease; }
+.slide.from-left { animation: from-left .28s ease; }
+@keyframes from-right { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: none; } }
+@keyframes from-left { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .slide.from-right, .slide.from-left { animation: none; } }
 .slide .card { margin-bottom: 0; }
 .slide h2 { color: var(--brand); }
 .dots { display: flex; justify-content: center; gap: 6px; margin: 10px 0; flex-wrap: wrap; }
