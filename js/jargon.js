@@ -12,8 +12,8 @@ import { findTerm } from './content.js';
 // Turn lesson text into safe HTML with clickable jargon buttons.
 export function format(text = '') {
   return esc(text)
-    .replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (_, shown, id) =>
-      `<button type="button" class="jargon" data-term="${(id || shown).toLowerCase()}" aria-haspopup="dialog">${shown}</button>`)
+    .replace(/\[\[([^\]|]+)(?:\|([^\]]+))?\]\]/g, (_, id, shown) =>
+      `<button type="button" class="jargon" data-term="${id.toLowerCase()}" aria-haspopup="dialog">${shown || id}</button>`)
     .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
     .replace(/`(.+?)`/g, '<code>$1</code>')
     .replace(/\n/g, '<br>');

@@ -1,0 +1,97 @@
+{
+  "units": [
+    {
+      "number": 1, "id": "u1", "file": "unit1.json",
+      "title": "How computers & the internet work",
+      "tagline": "Client, server, IP, domain, DNS — what happens when you open a website.",
+      "outline": ["Client and server", "IP addresses", "Domains and DNS", "HTTP and HTTPS", "Opening a website, step by step"]
+    },
+    {
+      "number": 2, "id": "u2", "file": null,
+      "title": "Your server (Windows)",
+      "tagline": "The computer that serves your website, and how it is set up.",
+      "outline": [
+        "What a [[web server]] really is (software, not just a box)",
+        "[[IIS]] vs [[Apache]] — two popular web server programs",
+        "[[XAMPP]]: a whole server kit on your own PC",
+        "[[Port|port]] numbers: 80, 443, 3306 and why they matter",
+        "Folders and files: where the website lives (htdocs, wwwroot)",
+        "[[Permissions]]: who may read, write or run a file"
+      ]
+    },
+    {
+      "number": 3, "id": "u3", "file": "unit3.json",
+      "title": "HTML — the skeleton",
+      "tagline": "The structure of every web page.",
+      "outline": ["What HTML is", "Tags", "Page structure", "Headings and paragraphs", "Links and images", "Lists", "Forms"]
+    },
+    {
+      "number": 4, "id": "u4", "file": null,
+      "title": "CSS — the clothes",
+      "tagline": "Colors, fonts, spacing and layout.",
+      "outline": [
+        "What [[CSS]] does: style, not structure",
+        "Selectors: telling CSS which parts to dress",
+        "Colors, fonts and sizes",
+        "The box model: content, padding, border, margin",
+        "Layout with Flexbox and Grid",
+        "Responsive design: one page for phone and desktop",
+        "How WordPress [[theme|themes]] use CSS"
+      ]
+    },
+    {
+      "number": 5, "id": "u5", "file": null,
+      "title": "JavaScript — the behavior",
+      "tagline": "Making pages react when you tap and type.",
+      "outline": [
+        "What [[JavaScript]] adds to a page",
+        "[[Variable|Variables]]: labeled boxes for data",
+        "[[Function|Functions]]: reusable recipes",
+        "If/else: making decisions",
+        "[[Loop|Loops]] and [[array|arrays]]",
+        "Events: reacting to clicks and taps",
+        "Changing the page (the DOM)"
+      ]
+    },
+    {
+      "number": 6, "id": "u6", "file": null,
+      "title": "PHP — the server's brain",
+      "tagline": "How WordPress builds a page before sending it.",
+      "outline": [
+        "What [[PHP]] is and where it runs ([[backend]])",
+        "Mixing PHP and HTML",
+        "Variables, if/else and loops in PHP",
+        "Including files (header.php, footer.php)",
+        "How WordPress uses PHP templates",
+        "Reading form data safely"
+      ]
+    },
+    {
+      "number": 7, "id": "u7", "file": null,
+      "title": "Databases & MySQL",
+      "tagline": "Where WordPress keeps your posts, pages and users.",
+      "outline": [
+        "What a [[database]] is: a super-organized filing cabinet",
+        "Tables, rows and columns",
+        "[[MySQL]] and phpMyAdmin",
+        "[[SQL]] basics: SELECT, INSERT, UPDATE, DELETE",
+        "The WordPress tables (wp_posts, wp_options, wp_users)",
+        "[[Backup|Backups]] and restoring a database"
+      ]
+    },
+    {
+      "number": 8, "id": "u8", "file": null,
+      "title": "WordPress & building a system from scratch",
+      "tagline": "Idea → plan → build → test → launch → maintain.",
+      "outline": [
+        "How WordPress fits together: core, [[theme|themes]], [[plugin|plugins]], database",
+        "Step 1: the idea — what problem are we solving?",
+        "Step 2: plan — pages, data, users",
+        "Step 3: build — small pieces, saved with [[Git]]",
+        "Step 4: test — find the [[bug|bugs]] before users do",
+        "Step 5: launch — [[domain]], [[hosting]], [[SSL]]",
+        "Step 6: maintain — updates, [[backup|backups]], security"
+      ]
+    }
+  ]
+}

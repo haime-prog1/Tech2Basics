@@ -52,6 +52,9 @@ export function renderQuiz(box, questions, onDone) {
       }
     };
 
+    // "Show answer" is always allowed — it just doesn't count as a first-try success.
+    const reveal = (msg) => { if (firstTry[i] === null) firstTry[i] = false; tell(true, msg); };
+
     el.querySelector('[data-act="hint"]').onclick = () => {
       fb.hidden = false; fb.className = 'feedback try';
       fb.innerHTML = '💭 ' + format(q.hint || 'Read the question slowly. Look for the key word.');
@@ -67,7 +70,7 @@ export function renderQuiz(box, questions, onDone) {
       });
       el.querySelector('[data-act="show"]').onclick = () => {
         area.querySelector(`[data-k="${q.answer}"]`).classList.add('right');
-        tell(true, 'The answer is: **' + q.options[q.answer] + '**. ' + (q.explain || ''));
+        reveal('The answer is: **' + q.options[q.answer] + '**. ' + (q.explain || ''));
       };
     }
 
@@ -85,7 +88,7 @@ export function renderQuiz(box, questions, onDone) {
       };
       area.querySelector('[data-act="check"]').onclick = check;
       input.onkeydown = (e) => { if (e.key === 'Enter') check(); };
-      el.querySelector('[data-act="show"]').onclick = () => { input.value = q.answer; tell(true, 'The answer is **' + q.answer + '**. ' + (q.explain || '')); };
+      el.querySelector('[data-act="show"]').onclick = () => { input.value = q.answer; reveal('The answer is **' + q.answer + '**. ' + (q.explain || '')); };
     }
 
     if (q.type === 'order') {
@@ -113,7 +116,7 @@ export function renderQuiz(box, questions, onDone) {
       };
       el.querySelector('[data-act="show"]').onclick = () => {
         q.items.forEach((v) => list.appendChild([...list.children].find((li) => li.dataset.v === esc(v) || li.dataset.v === v)));
-        tell(true, 'Here is the right order. ' + (q.explain || ''));
+        reveal('Here is the right order. ' + (q.explain || ''));
       };
     }
   });

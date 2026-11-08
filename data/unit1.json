@@ -1,0 +1,268 @@
+{
+  "unit": 1,
+  "lessons": [
+    {
+      "id": "u1-l1",
+      "title": "Client and server: who asks, who answers",
+      "minutes": 5,
+      "cards": [
+        {
+          "title": "Think of a restaurant",
+          "compare": "You (the customer) order food. The kitchen cooks it and sends it back.",
+          "simple": "The internet works like a restaurant. One side **asks**. The other side **answers**. That's it. That's the big secret.",
+          "normal": "Almost everything online is a conversation between two sides: one that **asks** for something and one that **answers**. Every website, app and email works this way.",
+          "technical": "Most internet communication follows the **client–server model**: a requesting party initiates a connection and sends a request; a serving party listens for connections and returns a response."
+        },
+        {
+          "title": "The customer = the client",
+          "compare": "The customer is the one who orders.",
+          "simple": "The one who asks is called the [[client]]. Your iPhone is a client. Your [[browser]] (Safari) is a client.",
+          "normal": "A [[client]] is the device or program that asks. When you open Safari and type a website, Safari is the client. It asks: \"Please give me this page.\"",
+          "technical": "A [[client]] initiates requests. Browsers are HTTP clients; apps, email programs and even command-line tools like `curl` or `ping` are also clients. One device can run many clients at once."
+        },
+        {
+          "title": "The kitchen = the server",
+          "compare": "The kitchen waits for orders all day and prepares them.",
+          "simple": "The one who answers is called the [[server]]. It waits all day for questions. When one comes, it sends back an answer.",
+          "normal": "A [[server]] is a computer (or program) that waits for requests and sends back answers. It is usually on 24/7. Your agency's Windows server is one.",
+          "technical": "A [[server]] is software listening on a network [[port]] (e.g. 443 for HTTPS) that handles incoming requests. \"Server\" also names the hardware running that software. One machine can run several servers: a [[web server]], a [[database]] server, and more."
+        },
+        {
+          "title": "Ask and answer = request and response",
+          "compare": "Your order slip is the request. The plate of food is the response.",
+          "simple": "The question is a [[request]]. The answer is a [[response]]. Ask → answer. Request → response.",
+          "normal": "The client sends a [[request]] (\"give me the home page\"). The server sends a [[response]] (the page itself, or an error like \"not found\"). One page can need dozens of these: one for the page, one for each picture, and so on.",
+          "technical": "An HTTP [[request]] has a method (GET/POST), a path and headers. The [[response]] has a status code (200, 404, 500), headers and a body. Loading one page typically triggers many requests for HTML, CSS, JS, images and fonts.",
+          "code": "Client:  GET /news  (please give me the news page)\nServer:  200 OK     (here it is: <html>...)"
+        }
+      ],
+      "recap": [
+        "The [[client]] asks (your phone or browser).",
+        "The [[server]] answers (like your agency's Windows server).",
+        "The question is a [[request]]; the answer is a [[response]]."
+      ],
+      "atMyJob": "When the public opens your agency website, **their phone is the client** and **your Windows server is the server**. When the site is slow or down, you check the server side. When only one person has a problem, it's often their client side (their browser, cache or internet).",
+      "quiz": [
+        { "type": "mc", "q": "In the restaurant comparison, the kitchen is the…", "options": ["Client", "Server", "Browser"], "answer": 1,
+          "explain": "Yes! The kitchen waits for orders and answers them — that's a server.",
+          "why": ["The client is the customer who orders, not the kitchen.", "", "The browser is like the waiter on the customer's side — it belongs to the client."],
+          "hint": "Who waits all day and prepares things?" },
+        { "type": "mc", "q": "You open Safari on your iPhone. What is Safari?", "options": ["A server", "A database", "A client"], "answer": 2,
+          "explain": "Correct. Safari asks for pages, so it's a client.",
+          "why": ["A server answers requests. Safari is the one asking.", "A database stores data. Safari displays web pages."] },
+        { "type": "fill", "q": "The message a client sends to ask for something is called a ___.", "answer": "request", "accept": ["requests", "a request"],
+          "hint": "It starts with \"re…\" and means asking.", "explain": "Yes — a request. The server replies with a response." },
+        { "type": "order", "q": "Put the restaurant steps in order:", "items": ["Customer places an order (request)", "Kitchen prepares the food (server works)", "Food is brought to the table (response)"],
+          "explain": "Ask → work → answer. Every website visit follows this pattern." }
+      ]
+    },
+    {
+      "id": "u1-l2",
+      "title": "IP address: every device's home address",
+      "minutes": 5,
+      "cards": [
+        {
+          "title": "Every house needs an address",
+          "compare": "A delivery rider can't bring your package without your exact address.",
+          "simple": "Computers send things to each other. To do that, each one needs an address. That address is called an [[IP address]].",
+          "normal": "For a [[request]] to reach a [[server]], and for the answer to come back, every device on a [[network]] needs a unique address. That's its [[IP address]].",
+          "technical": "IP (Internet Protocol) addresses identify network interfaces so that routers can deliver [[packet|packets]] to the right destination. Every device online has at least one."
+        },
+        {
+          "title": "What it looks like",
+          "compare": "Like a house number, street, barangay and city — four parts.",
+          "simple": "An IP address is just numbers with dots, like `192.168.1.10`. Four numbers. Each number is from 0 to 255.",
+          "normal": "The common type (IPv4) has four numbers separated by dots, like `203.0.113.25`. Each part is 0–255. There's also a longer new type called IPv6, like `2001:db8::1`.",
+          "technical": "IPv4 is 32 bits written as four octets (0–255). IPv6 is 128 bits written in hexadecimal groups. IPv6 exists because IPv4 has only about 4.3 billion addresses — not enough for the world.",
+          "code": "IPv4:  192.168.1.10\nIPv6:  2001:0db8:0000:0000:0000:0000:0000:0001  (short: 2001:db8::1)"
+        },
+        {
+          "title": "Inside address vs outside address",
+          "compare": "Inside a building, you say \"Room 204.\" Outside, people need the building's street address.",
+          "simple": "Your office has **inside** addresses (like `192.168.x.x`) and one **outside** address for the internet. The [[router]] connects them.",
+          "normal": "**Private** IPs (like `192.168.x.x` or `10.x.x.x`) only work inside your office [[network]]. **Public** IPs work on the whole [[internet]]. Your [[router]] translates between them.",
+          "technical": "Private ranges (10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16) are not routed on the internet. NAT on the router maps many private IPs to one public IP. Servers that must be reachable publicly need a public IP or port forwarding."
+        },
+        {
+          "title": "Fixed vs changing",
+          "compare": "Your house address stays the same. A hotel room number changes each visit.",
+          "simple": "Your phone's IP can change every day. A server's IP should **never** change, so people can always find it.",
+          "normal": "Most devices get a temporary IP automatically (from DHCP). [[Server|Servers]] usually get a **static** (fixed) IP so the website can always be found at the same place.",
+          "technical": "DHCP leases dynamic addresses. Servers use static IPs (or DHCP reservations) so that [[DNS]] records, firewall rules and port forwards stay valid. You can see yours with `ipconfig` on Windows."
+        }
+      ],
+      "recap": [
+        "An [[IP address]] is a device's address, like `192.168.1.10`.",
+        "Private IPs work inside the office; public IPs work on the internet.",
+        "Servers should have a fixed (static) IP."
+      ],
+      "atMyJob": "On your Windows server, open Command Prompt and type `ipconfig` to see its IP. Your network hardware (router, firewall) uses IPs in its rules — for example, \"send web traffic to the server's IP\". If someone changes the server's IP, the website can disappear!",
+      "quiz": [
+        { "type": "mc", "q": "Which of these is an IPv4 address?", "options": ["nrcp.dost.gov.ph", "192.168.1.10", "C:\\inetpub"], "answer": 1,
+          "why": ["That's a domain name — a friendly name, not the number address.", "", "That's a folder path on Windows, not an address on a network."],
+          "explain": "Yes! Four numbers with dots = IPv4." },
+        { "type": "mc", "q": "Why should a server have a fixed (static) IP?", "options": ["So it looks nicer", "So people and rules can always find it at the same address", "Because it's faster to type"], "answer": 1,
+          "explain": "Right. DNS records and firewall rules point to that address — if it changes, they break." },
+        { "type": "fill", "q": "On Windows, the command to see your IP address is ___.", "answer": "ipconfig", "accept": ["ipconfig /all"],
+          "hint": "It's \"ip\" plus a short word for configuration.", "explain": "Yes — ipconfig. Try it on your PC today!" },
+        { "type": "mc", "q": "`192.168.1.50` is a…", "options": ["Private (inside) IP", "Public (internet) IP"], "answer": 0,
+          "explain": "Correct. Addresses starting with 192.168 only work inside a local network.",
+          "why": ["", "Not quite — 192.168.x.x is a private range. It can't be reached directly from the internet."] }
+      ]
+    },
+    {
+      "id": "u1-l3",
+      "title": "Domains and DNS: names instead of numbers",
+      "minutes": 6,
+      "cards": [
+        {
+          "title": "Numbers are hard to remember",
+          "compare": "You save \"Mama\" in your contacts instead of memorizing her phone number.",
+          "simple": "Nobody wants to type `203.0.113.25`. So we use names, like `example.gov.ph`. That name is a [[domain]].",
+          "normal": "IP addresses are hard to remember, so websites use a friendly name called a [[domain]] (or domain name), like `dost.gov.ph`.",
+          "technical": "A [[domain]] name is a human-readable label registered in the global Domain Name System. It's mapped to one or more IP addresses through DNS records."
+        },
+        {
+          "title": "Reading a domain",
+          "compare": "Like reading an address from the biggest place to the smallest: country → city → street.",
+          "simple": "Read a domain from **right to left**. `.ph` = Philippines. `.gov` = government. Then the agency name.",
+          "normal": "In `nrcp.dost.gov.ph`: **.ph** is the country, **.gov** means government, **dost** is the department, **nrcp** is a part under it (a subdomain).",
+          "technical": "Labels form a hierarchy from right to left: root → TLD (`.ph`) → second level (`gov.ph`) → registered domain (`dost.gov.ph`) → subdomain (`nrcp`). Each level can delegate authority to its own name servers."
+        },
+        {
+          "title": "DNS = the internet's contacts app",
+          "compare": "You tap \"Mama\" and your phone finds the number behind it.",
+          "simple": "When you type a name, your phone asks [[DNS]]: \"What's the number for this name?\" DNS answers with the [[IP address]].",
+          "normal": "[[DNS]] (Domain Name System) turns a domain into an IP address. Your device asks a DNS server, gets the IP, and then connects to that IP.",
+          "technical": "A stub resolver queries a recursive resolver, which walks root → TLD → authoritative name servers to find the record (A for IPv4, AAAA for IPv6, CNAME for aliases, MX for mail). Results are cached for the record's TTL.",
+          "code": "You:  What is the IP of example.gov.ph?\nDNS:  It's 203.0.113.25 (remember this for 1 hour)"
+        },
+        {
+          "title": "Why DNS changes take time",
+          "compare": "If a friend changes numbers, people with the old number saved still call the old one for a while.",
+          "simple": "DNS answers get saved for a while (that's [[cache]]). So if you change a server, some people still go to the old one for a few hours.",
+          "normal": "DNS answers are [[cache|cached]] (saved) for a set time. After you change a DNS record, some people may see the old site for minutes to hours until their saved answer expires.",
+          "technical": "Each record has a TTL (time to live) in seconds. Resolvers cache responses until TTL expires. Lower the TTL a day before a planned migration to make the switch faster. Test with `nslookup example.gov.ph`."
+        }
+      ],
+      "recap": [
+        "A [[domain]] is a friendly name for a website.",
+        "[[DNS]] turns the name into an [[IP address]].",
+        "DNS answers are cached, so changes can take time to reach everyone."
+      ],
+      "atMyJob": "If you move WordPress to a new server, you must update the DNS record so the domain points to the new IP. Use `nslookup yourdomain.gov.ph` in Command Prompt to check which IP the name points to right now.",
+      "quiz": [
+        { "type": "mc", "q": "What does DNS do?", "options": ["Stores WordPress posts", "Turns domain names into IP addresses", "Makes the website pretty"], "answer": 1,
+          "why": ["That's the database's job (MySQL).", "", "That's CSS's job."], "explain": "Exactly — it's the internet's contacts app." },
+        { "type": "mc", "q": "In `nrcp.dost.gov.ph`, what does `.ph` mean?", "options": ["PHP", "Philippines", "Phone"], "answer": 1,
+          "explain": "Yes! The last part is often the country code." },
+        { "type": "fill", "q": "The command to look up a domain's IP on Windows is ___.", "answer": "nslookup", "hint": "\"ns\" stands for name server, then \"lookup\".", "explain": "Correct — nslookup asks DNS for you." },
+        { "type": "order", "q": "Put these in order when you type a website name:", "items": ["You type the domain name", "Your device asks DNS for the IP", "DNS answers with the IP address", "Your device connects to that IP"] }
+      ]
+    },
+    {
+      "id": "u1-l4",
+      "title": "HTTP and HTTPS: the rules of the conversation",
+      "minutes": 5,
+      "cards": [
+        {
+          "title": "A shared language",
+          "compare": "Like a standard order form everyone in the restaurant understands.",
+          "simple": "Browsers and servers need the same rules to talk. These rules are called [[HTTP]].",
+          "normal": "[[HTTP]] is the set of rules (a [[protocol]]) browsers and servers use to send requests and responses.",
+          "technical": "HTTP (HyperText Transfer Protocol) is an application-layer [[protocol]]. Requests use methods like GET (read) and POST (send data). Versions: HTTP/1.1, HTTP/2, HTTP/3."
+        },
+        {
+          "title": "Status codes: the kitchen's short replies",
+          "compare": "\"Here's your food\" · \"We don't have that\" · \"The kitchen is on fire!\"",
+          "simple": "The server always answers with a number. **200** = OK. **404** = not found. **500** = the server has a problem.",
+          "normal": "Every response starts with a status code. **2xx** = success, **3xx** = go somewhere else (redirect), **4xx** = the request has a problem (like 404 not found), **5xx** = the server has a problem.",
+          "technical": "Common codes: 200 OK, 301/302 redirect, 304 not modified (use your cache), 401/403 unauthorized/forbidden, 404 not found, 500 internal server error, 502/503 bad gateway/service unavailable."
+        },
+        {
+          "title": "HTTPS = HTTP in a sealed envelope",
+          "compare": "A postcard can be read by every mail carrier. A sealed envelope can't.",
+          "simple": "Plain HTTP is like a postcard. Anyone along the way can read it. [[HTTPS]] seals it. The **S** means **secure**.",
+          "normal": "[[HTTPS]] is HTTP plus encryption. It stops others on the network from reading or changing data, like passwords. The padlock 🔒 in the address bar means HTTPS.",
+          "technical": "HTTPS wraps HTTP in TLS. The server presents a certificate ([[SSL]]/TLS) signed by a trusted authority, proving its identity; then both sides agree on encryption keys. Default port: 443 (HTTP uses 80)."
+        },
+        {
+          "title": "The certificate",
+          "compare": "Like an official ID that proves the website is really who it says it is.",
+          "simple": "HTTPS needs a certificate. It's like an ID card for the website. It expires, so it must be renewed.",
+          "normal": "An [[SSL]] certificate proves the site is genuine and enables encryption. Certificates expire (often every 90 days to 1 year). If it expires, visitors see a big warning.",
+          "technical": "Certificates are issued by Certificate Authorities (e.g. Let's Encrypt, free with 90-day validity, automated renewal via ACME clients like win-acme on IIS). Browsers check the domain name, validity dates and chain of trust."
+        }
+      ],
+      "recap": [
+        "[[HTTP]] is the language of requests and responses.",
+        "Status codes: 200 OK, 404 not found, 500 server error.",
+        "[[HTTPS]] encrypts the conversation and needs an [[SSL]] certificate."
+      ],
+      "atMyJob": "If the agency site shows **500**, check the server (PHP errors, logs). If it shows **404**, the page or link is wrong. Put the SSL certificate's expiry date on your calendar — an expired certificate makes government sites look unsafe.",
+      "quiz": [
+        { "type": "mc", "q": "A visitor sees \"404\". What does that mean?", "options": ["Everything is OK", "The page was not found", "The server is on fire"], "answer": 1,
+          "why": ["OK is 200.", "", "Server problems are 5xx codes like 500."], "explain": "Right — 404 means not found. Often a broken link." },
+        { "type": "mc", "q": "What does the S in HTTPS stand for?", "options": ["Speed", "Server", "Secure"], "answer": 2, "explain": "Yes — Secure. The conversation is encrypted." },
+        { "type": "fill", "q": "HTTPS normally uses port number ___.", "answer": "443", "hint": "HTTP uses 80. HTTPS is a 3-digit number starting with 4.", "explain": "Correct — 443." },
+        { "type": "mc", "q": "What happens when an SSL certificate expires?", "options": ["Nothing", "Visitors see a security warning", "The website gets faster"], "answer": 1, "explain": "Exactly — so always renew before the expiry date." }
+      ]
+    },
+    {
+      "id": "u1-l5",
+      "title": "What happens when I open a website",
+      "minutes": 7,
+      "cards": [
+        {
+          "title": "Putting it all together",
+          "compare": "Ordering food delivery: find the restaurant, call, order, get the food, set the table.",
+          "simple": "Now you know all the pieces. Let's watch them work together when you open a website.",
+          "normal": "You've learned [[client]], [[server]], [[IP address]], [[DNS]] and [[HTTPS]]. Opening one web page uses all of them in a few seconds.",
+          "technical": "A page load involves DNS resolution, a TCP (or QUIC) connection, a TLS handshake, HTTP request/response cycles, and the browser parsing and rendering the result."
+        },
+        {
+          "title": "Steps 1–2: Find the address",
+          "compare": "You look up the restaurant's number in your contacts.",
+          "simple": "1. You type the name. 2. Your phone asks [[DNS]] for the IP address.",
+          "normal": "1. You type `example.gov.ph`. 2. The [[browser]] checks its [[cache]]; if it doesn't know the IP, it asks a [[DNS]] server and gets one back.",
+          "technical": "The browser parses the [[URL]], checks its DNS cache, the OS cache and hosts file, then queries the configured resolver for A/AAAA records."
+        },
+        {
+          "title": "Steps 3–4: Connect and ask",
+          "compare": "You call the restaurant, they confirm who they are, then you place the order.",
+          "simple": "3. Your phone connects to the server and checks its ID (the certificate). 4. It asks: \"Please send the home page.\"",
+          "normal": "3. The browser connects to the server's IP on port 443 and checks the [[SSL]] certificate. 4. It sends an [[HTTP]] request: \"GET the home page.\"",
+          "technical": "TCP three-way handshake to port 443, then TLS handshake (certificate validation, key exchange). Then `GET / HTTP/2` with headers like Host, User-Agent, Accept and cookies."
+        },
+        {
+          "title": "Step 5: The server prepares the page",
+          "compare": "The kitchen reads the order, takes ingredients from the storeroom, and cooks.",
+          "simple": "5. The server gets to work. With WordPress, [[PHP]] takes posts from the [[database]] and builds the page.",
+          "normal": "5. The [[web server]] (like [[IIS]]) receives the request. For WordPress, it runs [[PHP]], which reads posts from [[MySQL]] and builds [[HTML]].",
+          "technical": "IIS routes the request via URL Rewrite to index.php, PHP-FastCGI executes WordPress, which queries MySQL, runs the theme templates and plugins, and outputs HTML. A page-cache plugin may skip this and serve a saved copy."
+        },
+        {
+          "title": "Steps 6–7: Send it back and draw it",
+          "compare": "The food arrives, and you arrange it on the table.",
+          "simple": "6. The server sends the page back. 7. Your browser reads it and draws it on the screen. Done!",
+          "normal": "6. The server sends a [[response]] (200 OK + HTML). 7. The browser reads the HTML, then asks for more files: [[CSS]] (looks), [[JavaScript]] (behavior), images. Then it draws the page.",
+          "technical": "The browser parses HTML into the DOM, fetches subresources (often in parallel over HTTP/2), builds the CSSOM, runs scripts, computes layout and paints. Cached files may be reused (304 or memory/disk cache)."
+        }
+      ],
+      "recap": [
+        "Name → [[DNS]] → [[IP address]] → secure connection.",
+        "Request → server builds the page (PHP + database) → response.",
+        "The browser draws HTML, then adds CSS, JavaScript and images."
+      ],
+      "atMyJob": "When the site is broken, walk through these steps like a checklist: Does DNS point to the right IP (`nslookup`)? Is the server reachable (`ping`)? Is the certificate valid? Does IIS/PHP show an error (check logs)? Is MySQL running? This turns \"the site is down\" into a clear search.",
+      "quiz": [
+        { "type": "order", "q": "Put the steps of opening a website in order:", "items": ["Type the domain name", "DNS finds the IP address", "Connect securely to the server", "Send the HTTP request", "Server builds the page", "Browser draws the page"],
+          "hint": "First you need the address. Last, you see the page.", "explain": "That's the whole journey of a web page!" },
+        { "type": "mc", "q": "In WordPress, who reads posts from the database to build the page?", "options": ["The browser", "PHP on the server", "DNS"], "answer": 1,
+          "why": ["The browser only receives the finished HTML.", "", "DNS only finds IP addresses."], "explain": "Right — PHP runs on the server and talks to MySQL." },
+        { "type": "mc", "q": "The site is down. Which command checks if DNS points to the right IP?", "options": ["nslookup", "ipconfig", "notepad"], "answer": 0, "explain": "Yes — nslookup asks DNS for the domain's IP." },
+        { "type": "fill", "q": "After the HTML arrives, the browser also loads ___ files to make the page look nice.", "answer": "CSS", "accept": ["css"], "hint": "The 'clothes' of a web page.", "explain": "Correct — CSS gives the page its look." }
+      ]
+    }
+  ]
+}

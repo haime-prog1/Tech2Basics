@@ -43,6 +43,8 @@ export async function findLesson(id) {
 
 // Look up a dictionary term by its id OR any of its alternative spellings.
 export async function findTerm(key) {
-  const k = key.toLowerCase();
-  return (await getDictionary()).find((t) => t.id === k || (t.aliases || []).includes(k));
+  const k = key.toLowerCase().trim();
+  const dashed = k.replace(/\s+/g, '-');            // "ip address" → "ip-address"
+  return (await getDictionary()).find((t) =>
+    t.id === k || t.id === dashed || t.term.toLowerCase() === k || (t.aliases || []).includes(k));
 }

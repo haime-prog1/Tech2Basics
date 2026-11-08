@@ -1,0 +1,899 @@
+{
+ "terms": [
+  {
+   "id": "jargon",
+   "term": "Jargon",
+   "aliases": [],
+   "compare": "Like the secret words only basketball players use — \"pick and roll\", \"and-one\".",
+   "meaning": "Special words used by people in one field.",
+   "more": "Every underlined word in this app is jargon. Tap it any time. Nobody remembers all of them on day one.",
+   "example": "Your IT colleagues say \"DNS\", \"SSL\", \"cron\" — that's jargon."
+  },
+  {
+   "id": "computer",
+   "term": "Computer",
+   "aliases": [],
+   "compare": "Like a very fast, very obedient office clerk.",
+   "meaning": "A machine that follows instructions to store and process information.",
+   "more": "Every computer has a processor (CPU) that thinks, memory (RAM) for short-term work, and storage (disk) for keeping files.",
+   "example": "Your office PC, your server and even your iPhone are all computers."
+  },
+  {
+   "id": "internet",
+   "term": "Internet",
+   "aliases": [],
+   "compare": "Like the national road network connecting every town.",
+   "meaning": "A giant worldwide network of connected computers.",
+   "more": "The internet is the roads. The web (websites) is just one kind of traffic on those roads. Email and video calls are other kinds.",
+   "example": "Your agency's website reaches the public through the internet."
+  },
+  {
+   "id": "network",
+   "term": "Network",
+   "aliases": [],
+   "compare": "Like a barangay where houses are connected by small streets.",
+   "meaning": "Two or more computers connected so they can share information.",
+   "more": "A LAN (local area network) is the network inside your office. The internet is a network of networks.",
+   "example": "The switches and cables you manage form your office network."
+  },
+  {
+   "id": "client",
+   "term": "Client",
+   "aliases": [],
+   "compare": "Like a customer ordering at a restaurant.",
+   "meaning": "The device or program that asks for something.",
+   "more": "Your browser is a client. It sends a request and waits for a response from a server.",
+   "example": "When staff open the agency site on their phones, each phone is a client."
+  },
+  {
+   "id": "server",
+   "term": "Server",
+   "aliases": [
+    "servers"
+   ],
+   "compare": "Like the restaurant kitchen that prepares and serves the food.",
+   "meaning": "A computer (or program) that waits for requests and sends back answers.",
+   "more": "\"Server\" can mean the physical machine OR the software that answers (like IIS or Apache). Servers usually run 24/7.",
+   "example": "Your Windows server that hosts the WordPress site is a server."
+  },
+  {
+   "id": "browser",
+   "term": "Browser",
+   "aliases": [
+    "web browser"
+   ],
+   "compare": "Like a waiter that takes your order and brings back the food.",
+   "meaning": "The app you use to view websites, like Safari or Chrome.",
+   "more": "The browser sends HTTP requests, receives HTML/CSS/JS files and draws them into a page.",
+   "example": "You test the agency site in Safari, Chrome and Edge."
+  },
+  {
+   "id": "ip-address",
+   "term": "IP address",
+   "aliases": [
+    "ip",
+    "ip addresses"
+   ],
+   "compare": "Like a house's exact street address.",
+   "meaning": "A number that identifies a device on a network, like 192.168.1.10.",
+   "more": "IPv4 looks like 203.0.113.5 (four numbers 0–255). IPv6 is longer, like 2001:db8::1. Private IPs (192.168.x.x, 10.x.x.x) only work inside your office.",
+   "example": "Your server has a fixed IP so the router always knows where to send web traffic."
+  },
+  {
+   "id": "domain",
+   "term": "Domain",
+   "aliases": [
+    "domain name",
+    "domains"
+   ],
+   "compare": "Like a business name on a signboard instead of the GPS coordinates.",
+   "meaning": "An easy-to-remember name for a website, like nrcp.dost.gov.ph.",
+   "more": "Domains are read right to left: .ph (country) → .gov (government) → dost → nrcp. You rent them from a registrar.",
+   "example": "Your agency's website address is its domain."
+  },
+  {
+   "id": "dns",
+   "term": "DNS",
+   "aliases": [
+    "domain name system"
+   ],
+   "compare": "Like the phone's contacts app: you tap a name, it finds the number.",
+   "meaning": "The system that turns a domain name into an IP address.",
+   "more": "Your device asks a DNS resolver, which asks other DNS servers until it finds the A record (IP) for the name. Answers are cached for a time called TTL.",
+   "example": "If the site 'can't be found' after a server move, DNS records may still point to the old IP."
+  },
+  {
+   "id": "url",
+   "term": "URL",
+   "aliases": [
+    "link",
+    "web address"
+   ],
+   "compare": "Like a full mailing address: city, street, house number, room.",
+   "meaning": "The complete address of one thing on the web.",
+   "more": "Example: https://example.gov.ph/news/index.php?id=5 — protocol, domain, path, and query.",
+   "example": "Each WordPress post has its own URL (permalink)."
+  },
+  {
+   "id": "http",
+   "term": "HTTP",
+   "aliases": [],
+   "compare": "Like the standard order form used between customer and kitchen.",
+   "meaning": "The set of rules browsers and servers use to talk.",
+   "more": "HyperText Transfer Protocol. A request has a method (GET, POST), a path and headers. A response has a status code (200 OK, 404 Not Found, 500 Server Error).",
+   "example": "When you see '404' on the site, that's an HTTP status code."
+  },
+  {
+   "id": "https",
+   "term": "HTTPS",
+   "aliases": [],
+   "compare": "Like sending your order in a sealed envelope instead of a postcard.",
+   "meaning": "HTTP with encryption, so nobody in between can read or change it.",
+   "more": "The S means Secure. It uses TLS/SSL certificates. iPhones need HTTPS for offline web apps.",
+   "example": "The padlock icon on your agency site means HTTPS is working."
+  },
+  {
+   "id": "ssl",
+   "term": "SSL / TLS",
+   "aliases": [
+    "tls",
+    "ssl certificate",
+    "certificate"
+   ],
+   "compare": "Like an official ID card plus a lockable box.",
+   "meaning": "The technology (and certificate) that makes HTTPS secure.",
+   "more": "SSL is the old name; TLS is the modern version. A certificate proves the site is really yours and must be renewed before it expires.",
+   "example": "If the certificate expires, visitors see a scary warning — set a renewal reminder."
+  },
+  {
+   "id": "protocol",
+   "term": "Protocol",
+   "aliases": [],
+   "compare": "Like the rules of a formal meeting: who speaks first, how to end.",
+   "meaning": "An agreed set of rules for how computers communicate.",
+   "more": "HTTP, FTP, DNS and SMTP (email) are all protocols.",
+   "example": "Choosing SFTP instead of FTP is choosing a safer protocol."
+  },
+  {
+   "id": "request",
+   "term": "Request",
+   "aliases": [],
+   "compare": "Like placing an order.",
+   "meaning": "A message from a client asking a server for something.",
+   "more": "An HTTP request includes a method (GET to read, POST to send), a URL and headers.",
+   "example": "Every page view on your site starts with a request."
+  },
+  {
+   "id": "response",
+   "term": "Response",
+   "aliases": [],
+   "compare": "Like the food the kitchen sends back, with a note saying 'Here you go'.",
+   "meaning": "The server's answer to a request.",
+   "more": "Includes a status code (like 200), headers and a body (the HTML, image, etc.).",
+   "example": "A slow response time means the server is taking long to cook the page."
+  },
+  {
+   "id": "router",
+   "term": "Router",
+   "aliases": [],
+   "compare": "Like a traffic enforcer pointing cars to the right road.",
+   "meaning": "A device that sends data between networks.",
+   "more": "Your office router connects the LAN to the internet and decides where each packet goes.",
+   "example": "Port forwarding on the router sends web traffic to your server."
+  },
+  {
+   "id": "packet",
+   "term": "Packet",
+   "aliases": [
+    "packets"
+   ],
+   "compare": "Like sending a long letter as many numbered postcards.",
+   "meaning": "A small piece of data sent across a network.",
+   "more": "Big files are split into packets, sent separately, and put back together at the other end.",
+   "example": "Packet loss on a network makes websites and calls feel slow."
+  },
+  {
+   "id": "isp",
+   "term": "ISP",
+   "aliases": [
+    "internet service provider"
+   ],
+   "compare": "Like the company that built the road to your house.",
+   "meaning": "The company that connects you to the internet (e.g. PLDT, Globe, Converge).",
+   "more": "Your ISP gives you a public IP and carries your traffic.",
+   "example": "If the whole office has no internet, the ISP may be down."
+  },
+  {
+   "id": "hosting",
+   "term": "Hosting",
+   "aliases": [
+    "web hosting",
+    "host"
+   ],
+   "compare": "Like renting a stall in a mall for your store.",
+   "meaning": "A place (a server) where your website's files live and are served.",
+   "more": "Can be your own server (self-hosted, like yours) or a rented one from a company (shared, VPS, cloud).",
+   "example": "Your agency self-hosts on a Windows server."
+  },
+  {
+   "id": "localhost",
+   "term": "localhost",
+   "aliases": [
+    "127.0.0.1"
+   ],
+   "compare": "Like talking to yourself in the mirror.",
+   "meaning": "A name that means 'this same computer'.",
+   "more": "localhost always points to 127.0.0.1. Great for testing a site before it goes public.",
+   "example": "With XAMPP you open http://localhost/ to see your test site."
+  },
+  {
+   "id": "port",
+   "term": "Port",
+   "aliases": [
+    "ports"
+   ],
+   "compare": "Like the numbered doors of a big building — each door for a different service.",
+   "meaning": "A number that says which program on a computer should get the message.",
+   "more": "Web uses 80 (HTTP) and 443 (HTTPS). MySQL uses 3306. RDP uses 3389. One IP, many ports.",
+   "example": "If Apache won't start in XAMPP, another app may already be using port 80."
+  },
+  {
+   "id": "web-server",
+   "term": "Web server",
+   "aliases": [
+    "web servers"
+   ],
+   "compare": "Like the kitchen staff who actually cook and plate the orders.",
+   "meaning": "Software that receives HTTP requests and sends back web pages.",
+   "more": "Examples: IIS, Apache, Nginx. It finds the right file or runs PHP, then sends the result.",
+   "example": "Your Windows server runs a web server program to serve WordPress."
+  },
+  {
+   "id": "iis",
+   "term": "IIS",
+   "aliases": [
+    "internet information services"
+   ],
+   "compare": "Like a kitchen brand made by Microsoft.",
+   "meaning": "Microsoft's web server software, built into Windows Server.",
+   "more": "Managed with IIS Manager. Sites live in folders like C:\\inetpub\\wwwroot. Can run PHP with FastCGI.",
+   "example": "Your WordPress site may be served by IIS on the Windows server."
+  },
+  {
+   "id": "apache",
+   "term": "Apache",
+   "aliases": [],
+   "compare": "Like another popular kitchen brand, free and open to everyone.",
+   "meaning": "A free, very popular web server program.",
+   "more": "Configured with httpd.conf and .htaccess files. Included in XAMPP.",
+   "example": "WordPress permalinks on Apache use the .htaccess file."
+  },
+  {
+   "id": "xampp",
+   "term": "XAMPP",
+   "aliases": [],
+   "compare": "Like a 'kitchen-in-a-box' kit you can set up at home.",
+   "meaning": "A free package that installs Apache, MySQL (MariaDB), PHP and more on your PC.",
+   "more": "X = any OS, A = Apache, M = MariaDB/MySQL, P = PHP, P = Perl. Files go in C:\\xampp\\htdocs.",
+   "example": "Use XAMPP to test WordPress changes safely before touching the real server."
+  },
+  {
+   "id": "permissions",
+   "term": "Permissions",
+   "aliases": [
+    "permission"
+   ],
+   "compare": "Like who holds which keys in the office.",
+   "meaning": "Rules saying who can read, change or run a file or folder.",
+   "more": "On Windows these are NTFS permissions (Read, Write, Modify, Full control). Too much = unsafe, too little = errors.",
+   "example": "WordPress needs write permission on wp-content/uploads to upload images."
+  },
+  {
+   "id": "file",
+   "term": "File",
+   "aliases": [
+    "files"
+   ],
+   "compare": "Like one sheet of paper or one document.",
+   "meaning": "A single saved piece of information on a computer.",
+   "more": "Files have names and extensions (.php, .html, .jpg) that hint what's inside.",
+   "example": "wp-config.php is a file that holds WordPress settings."
+  },
+  {
+   "id": "folder",
+   "term": "Folder",
+   "aliases": [
+    "directory",
+    "folders"
+   ],
+   "compare": "Like a folder in a filing cabinet.",
+   "meaning": "A container that holds files and other folders.",
+   "more": "Also called a directory. Folders inside folders make a path like C:\\inetpub\\wwwroot\\wp-content.",
+   "example": "Themes live in the wp-content/themes folder."
+  },
+  {
+   "id": "database",
+   "term": "Database",
+   "aliases": [
+    "databases",
+    "db"
+   ],
+   "compare": "Like a super-organized filing cabinet with labeled drawers.",
+   "meaning": "An organized place to store data so it's easy to find and update.",
+   "more": "Data is in tables (like spreadsheets) with rows and columns. Programs talk to it using SQL.",
+   "example": "WordPress keeps all posts, pages and users in a database."
+  },
+  {
+   "id": "mysql",
+   "term": "MySQL",
+   "aliases": [
+    "mariadb"
+   ],
+   "compare": "Like one particular brand of filing cabinet.",
+   "meaning": "A popular database program. WordPress uses it (or its twin, MariaDB).",
+   "more": "Listens on port 3306. Managed with phpMyAdmin or command line.",
+   "example": "Back up the MySQL database before every WordPress update."
+  },
+  {
+   "id": "sql",
+   "term": "SQL",
+   "aliases": [],
+   "compare": "Like the exact sentences you say to the filing-cabinet clerk.",
+   "meaning": "The language used to ask a database for data or change it.",
+   "more": "Structured Query Language. Example: SELECT post_title FROM wp_posts WHERE post_status='publish';",
+   "example": "In phpMyAdmin you can run SQL queries."
+  },
+  {
+   "id": "php",
+   "term": "PHP",
+   "aliases": [],
+   "compare": "Like the cook who reads the recipe and prepares a dish fresh for each customer.",
+   "meaning": "A programming language that runs on the server and builds web pages.",
+   "more": "PHP runs before the page is sent. The visitor only receives the resulting HTML. WordPress is written in PHP.",
+   "example": "Files like functions.php in your theme are PHP."
+  },
+  {
+   "id": "html",
+   "term": "HTML",
+   "aliases": [],
+   "compare": "Like the skeleton (or the walls and rooms) of a house.",
+   "meaning": "The language that gives a web page its structure: headings, paragraphs, images, links.",
+   "more": "HyperText Markup Language. It uses tags like <p> and <h1>. It is not a programming language — it describes, it doesn't calculate.",
+   "example": "WordPress turns your post into HTML before sending it."
+  },
+  {
+   "id": "css",
+   "term": "CSS",
+   "aliases": [],
+   "compare": "Like the clothes, paint and decoration.",
+   "meaning": "The language that controls how a page looks: colors, fonts, spacing, layout.",
+   "more": "Cascading Style Sheets. Rules look like: h1 { color: green; }",
+   "example": "Your WordPress theme's style.css controls the site's look."
+  },
+  {
+   "id": "javascript",
+   "term": "JavaScript",
+   "aliases": [
+    "js"
+   ],
+   "compare": "Like the electricity that makes things move and respond.",
+   "meaning": "A programming language that makes pages interactive in the browser.",
+   "more": "Runs in the browser (frontend). Can react to taps, change the page, and talk to servers. Not related to Java.",
+   "example": "Image sliders and pop-up menus on the site use JavaScript."
+  },
+  {
+   "id": "programming",
+   "term": "Programming",
+   "aliases": [
+    "coding",
+    "code"
+   ],
+   "compare": "Like writing a very exact recipe for a robot cook.",
+   "meaning": "Writing instructions a computer can follow.",
+   "more": "Code must be exact — computers don't guess what you meant.",
+   "example": "Editing functions.php is programming."
+  },
+  {
+   "id": "variable",
+   "term": "Variable",
+   "aliases": [
+    "variables"
+   ],
+   "compare": "Like a labeled box where you keep something.",
+   "meaning": "A named place to store a value that can change.",
+   "more": "JavaScript: let name = 'Ana'; PHP: $name = 'Ana';",
+   "example": "WordPress uses variables like $post to hold the current post."
+  },
+  {
+   "id": "function",
+   "term": "Function",
+   "aliases": [
+    "functions"
+   ],
+   "compare": "Like a recipe card you can use again and again.",
+   "meaning": "A named group of instructions you can run whenever needed.",
+   "more": "Functions can take inputs (parameters) and give back an output (return value).",
+   "example": "the_title() is a WordPress function that prints the post title."
+  },
+  {
+   "id": "loop",
+   "term": "Loop",
+   "aliases": [
+    "loops"
+   ],
+   "compare": "Like stamping 100 envelopes, one by one, with the same stamp.",
+   "meaning": "Code that repeats until a job is done.",
+   "more": "Types: for, while, foreach. Careful: a loop that never stops freezes the program.",
+   "example": "\"The Loop\" in WordPress repeats to show each post."
+  },
+  {
+   "id": "array",
+   "term": "Array",
+   "aliases": [
+    "arrays",
+    "list"
+   ],
+   "compare": "Like an egg tray: many slots, each holding one thing, in order.",
+   "meaning": "A list of values stored together under one name.",
+   "more": "Items are numbered from 0. JavaScript: ['a','b','c']; PHP: array('a','b','c') or ['a','b','c'].",
+   "example": "A list of recent posts is often an array."
+  },
+  {
+   "id": "bug",
+   "term": "Bug",
+   "aliases": [
+    "bugs"
+   ],
+   "compare": "Like a typo in a recipe that makes the cake taste wrong.",
+   "meaning": "A mistake in code that makes it behave wrongly.",
+   "more": "Named after an actual moth found in an early computer in 1947.",
+   "example": "A plugin update that breaks the menu has a bug."
+  },
+  {
+   "id": "debug",
+   "term": "Debug",
+   "aliases": [
+    "debugging"
+   ],
+   "compare": "Like being a detective looking for why the cake tasted wrong.",
+   "meaning": "Finding and fixing bugs.",
+   "more": "Tools: error messages, logs, browser DevTools, WP_DEBUG in wp-config.php.",
+   "example": "Turning on WP_DEBUG shows PHP errors to help you debug."
+  },
+  {
+   "id": "plugin",
+   "term": "Plugin",
+   "aliases": [
+    "plugins"
+   ],
+   "compare": "Like an app you install on your phone to add a feature.",
+   "meaning": "An add-on that gives WordPress new features.",
+   "more": "Plugins are PHP code in wp-content/plugins. Too many or outdated plugins slow and endanger the site.",
+   "example": "Contact Form 7 or a backup plugin are examples."
+  },
+  {
+   "id": "theme",
+   "term": "Theme",
+   "aliases": [
+    "themes"
+   ],
+   "compare": "Like the uniform and interior design of a store.",
+   "meaning": "A set of files that controls how a WordPress site looks.",
+   "more": "Made of PHP templates, CSS and JS in wp-content/themes. Use a child theme for your edits so updates don't erase them.",
+   "example": "Changing the theme changes the whole site's design."
+  },
+  {
+   "id": "cache",
+   "term": "Cache",
+   "aliases": [
+    "caching"
+   ],
+   "compare": "Like keeping a ready-made batch of rice instead of cooking for every order.",
+   "meaning": "A saved copy of something so it loads faster next time.",
+   "more": "Browsers cache files; servers and plugins cache whole pages. Old cache can show outdated content — 'clear the cache'.",
+   "example": "If your edit doesn't appear, clear the browser or plugin cache."
+  },
+  {
+   "id": "backup",
+   "term": "Backup",
+   "aliases": [
+    "backups"
+   ],
+   "compare": "Like photocopying important documents and keeping them in another drawer.",
+   "meaning": "A saved copy of files or data you can restore if something breaks.",
+   "more": "WordPress needs two parts backed up: the files AND the database. Test restoring sometimes.",
+   "example": "Always back up before updating WordPress or plugins."
+  },
+  {
+   "id": "ftp",
+   "term": "FTP / SFTP",
+   "aliases": [
+    "sftp"
+   ],
+   "compare": "Like a delivery truck carrying files between two buildings.",
+   "meaning": "A way to copy files between your computer and a server.",
+   "more": "FTP sends passwords unencrypted; SFTP or FTPS is the safe version. Tools: FileZilla, WinSCP.",
+   "example": "Uploading a theme folder to the server can be done with SFTP."
+  },
+  {
+   "id": "cron",
+   "term": "Cron",
+   "aliases": [
+    "cron job",
+    "scheduled task"
+   ],
+   "compare": "Like an alarm clock that reminds the computer to do a chore.",
+   "meaning": "A schedule that runs tasks automatically at set times.",
+   "more": "Cron is the Linux name. On Windows it's Task Scheduler. WordPress has its own 'WP-Cron' that runs when people visit.",
+   "example": "A nightly backup at 2 AM is a scheduled task."
+  },
+  {
+   "id": "firewall",
+   "term": "Firewall",
+   "aliases": [],
+   "compare": "Like a security guard at the gate checking who may come in.",
+   "meaning": "A system that allows or blocks network traffic based on rules.",
+   "more": "Can be hardware (in the network) or software (Windows Defender Firewall). Rules often mention ports and IPs.",
+   "example": "Opening port 443 in the firewall lets HTTPS visitors reach the server."
+  },
+  {
+   "id": "api",
+   "term": "API",
+   "aliases": [],
+   "compare": "Like a restaurant menu: it lists what you can order and how.",
+   "meaning": "A defined way for one program to ask another program for data or actions.",
+   "more": "Application Programming Interface. Web APIs often send JSON over HTTP. WordPress has a REST API at /wp-json/.",
+   "example": "A plugin may use Google's API to show a map."
+  },
+  {
+   "id": "json",
+   "term": "JSON",
+   "aliases": [],
+   "compare": "Like a neatly labeled form: name: Ana, age: 30.",
+   "meaning": "A simple text format for storing and sending data.",
+   "more": "JavaScript Object Notation. Example: {\"name\": \"Ana\", \"age\": 30}. This app's lessons are JSON files!",
+   "example": "WordPress REST API replies in JSON."
+  },
+  {
+   "id": "frontend",
+   "term": "Frontend",
+   "aliases": [
+    "front end",
+    "front-end"
+   ],
+   "compare": "Like the dining area customers see.",
+   "meaning": "The part of a website you see and touch in the browser.",
+   "more": "Built with HTML, CSS and JavaScript.",
+   "example": "The public pages of your site are the frontend."
+  },
+  {
+   "id": "backend",
+   "term": "Backend",
+   "aliases": [
+    "back end",
+    "back-end"
+   ],
+   "compare": "Like the kitchen and storeroom customers don't see.",
+   "meaning": "The behind-the-scenes part: server, code and database.",
+   "more": "Built with languages like PHP plus a database. Also: the WordPress admin area is often called the backend.",
+   "example": "wp-admin and the MySQL database are the backend."
+  },
+  {
+   "id": "framework",
+   "term": "Framework",
+   "aliases": [
+    "frameworks"
+   ],
+   "compare": "Like a ready-made house frame — you add walls and paint.",
+   "meaning": "A ready set of code and rules that speeds up building apps.",
+   "more": "Examples: Laravel (PHP), React (JavaScript), Bootstrap (CSS). This app uses no framework so you can see everything.",
+   "example": "Some themes are built on CSS frameworks like Bootstrap."
+  },
+  {
+   "id": "version",
+   "term": "Version",
+   "aliases": [
+    "versions"
+   ],
+   "compare": "Like editions of a textbook: 1st, 2nd, 3rd.",
+   "meaning": "A numbered release of software.",
+   "more": "Often written as major.minor.patch, like 6.4.2. Big number changes can break things.",
+   "example": "Check the PHP version before installing a new plugin."
+  },
+  {
+   "id": "git",
+   "term": "Git",
+   "aliases": [
+    "version control"
+   ],
+   "compare": "Like a save-game system: you can go back to any earlier save.",
+   "meaning": "A tool that tracks every change to your code so you can undo and compare.",
+   "more": "Each save is a 'commit'. Code can be shared online on GitHub.",
+   "example": "Keeping your child theme in Git lets you undo bad edits."
+  },
+  {
+   "id": "github",
+   "term": "GitHub",
+   "aliases": [],
+   "compare": "Like Google Drive, but for code saved with Git.",
+   "meaning": "A website that stores Git projects online and can host simple sites (GitHub Pages).",
+   "more": "GitHub Pages gives free HTTPS hosting for static sites like this app.",
+   "example": "You'll put TechBasics on GitHub Pages."
+  },
+  {
+   "id": "tag",
+   "term": "Tag",
+   "aliases": [
+    "tags",
+    "html tag"
+   ],
+   "compare": "Like labels on boxes: 'This is a title', 'This is a paragraph'.",
+   "meaning": "An HTML marker in angle brackets that tells the browser what something is.",
+   "more": "Most tags come in pairs: <p> opens, </p> closes. Some are single, like <img>.",
+   "example": "The WordPress block editor creates tags for you behind the scenes."
+  },
+  {
+   "id": "element",
+   "term": "Element",
+   "aliases": [
+    "elements"
+   ],
+   "compare": "Like one complete labeled box — label plus what's inside.",
+   "meaning": "An opening tag, its content and the closing tag together.",
+   "more": "<p>Hello</p> is one paragraph element. Elements can hold other elements (nesting).",
+   "example": "Each block in the WordPress editor becomes one or more elements."
+  },
+  {
+   "id": "attribute",
+   "term": "Attribute",
+   "aliases": [
+    "attributes"
+   ],
+   "compare": "Like extra details written on a box label: 'fragile', 'this side up'.",
+   "meaning": "Extra information inside an opening tag.",
+   "more": "Written as name=\"value\". Example: <a href=\"page.html\"> or <img alt=\"Logo\">.",
+   "example": "Adding alt text to images in WordPress fills the alt attribute."
+  },
+  {
+   "id": "markup",
+   "term": "Markup",
+   "aliases": [],
+   "compare": "Like a teacher marking a document with 'title', 'note', 'important'.",
+   "meaning": "Text with tags added to describe its structure.",
+   "more": "HTML is a markup language — it marks parts, it doesn't calculate.",
+   "example": "When you switch the editor to 'Code', you see the markup."
+  },
+  {
+   "id": "form",
+   "term": "Form",
+   "aliases": [
+    "forms"
+   ],
+   "compare": "Like a paper application form.",
+   "meaning": "Part of a page where visitors type and send information.",
+   "more": "Made with <form>, <input>, <label>, <button>. Data goes to the server via GET or POST.",
+   "example": "The agency's contact or feedback page uses a form."
+  },
+  {
+   "id": "responsive",
+   "term": "Responsive design",
+   "aliases": [
+    "responsive"
+   ],
+   "compare": "Like water that takes the shape of any glass.",
+   "meaning": "A design that adjusts to any screen size.",
+   "more": "Uses flexible layouts and CSS media queries.",
+   "example": "Check that the agency site looks good on phones — that's responsive design."
+  },
+  {
+   "id": "pwa",
+   "term": "PWA",
+   "aliases": [
+    "progressive web app"
+   ],
+   "compare": "Like a website that learned to behave like an app.",
+   "meaning": "A website that can be installed and work offline.",
+   "more": "Needs HTTPS, a manifest.json and a service worker. This app is a PWA!",
+   "example": "TechBasics on your Home Screen is a PWA."
+  },
+  {
+   "id": "service-worker",
+   "term": "Service worker",
+   "aliases": [],
+   "compare": "Like a helper who keeps photocopies of everything in case the internet goes out.",
+   "meaning": "A background script that can save files for offline use.",
+   "more": "It sits between the app and the network and can answer from Cache Storage.",
+   "example": "Look at sw.js in this project — that's the service worker."
+  },
+  {
+   "id": "rdp",
+   "term": "Remote Desktop (RDP)",
+   "aliases": [
+    "rdp",
+    "remote desktop"
+   ],
+   "compare": "Like a TV remote for another computer far away.",
+   "meaning": "A way to see and control another computer over the network.",
+   "more": "Windows uses RDP on port 3389. Never leave it open to the whole internet.",
+   "example": "You may use Remote Desktop to manage the Windows server."
+  },
+  {
+   "id": "wordpress",
+   "term": "WordPress",
+   "aliases": [
+    "wp"
+   ],
+   "compare": "Like a ready-to-use store building where you just arrange shelves and products.",
+   "meaning": "A free system for building and managing websites without coding every page.",
+   "more": "A CMS (content management system) written in PHP with a MySQL database.",
+   "example": "Your agency's website runs on WordPress."
+  },
+  {
+   "id": "cms",
+   "term": "CMS",
+   "aliases": [
+    "content management system"
+   ],
+   "compare": "Like a bulletin-board manager who posts notices for you.",
+   "meaning": "Software that lets people manage website content without writing code.",
+   "more": "WordPress, Joomla and Drupal are CMSs.",
+   "example": "Staff post news through the WordPress CMS."
+  },
+  {
+   "id": "ping",
+   "term": "Ping",
+   "aliases": [],
+   "compare": "Like knocking on a door to see if anyone is home.",
+   "meaning": "A command that checks if another device can be reached and how fast.",
+   "more": "Run 'ping 8.8.8.8' in Command Prompt. It measures round-trip time in ms.",
+   "example": "Ping the server to check if it's online."
+  },
+  {
+   "id": "open-source",
+   "term": "Open source",
+   "aliases": [],
+   "compare": "Like a recipe shared freely for anyone to use and improve.",
+   "meaning": "Software whose code is public and free to use and change.",
+   "more": "WordPress, PHP, Apache and MySQL are open source.",
+   "example": "Your whole website stack is mostly open source."
+  },
+  {
+   "id": "code-editor",
+   "term": "Code editor",
+   "aliases": [
+    "editor",
+    "vs code",
+    "visual studio code"
+   ],
+   "compare": "Like a word processor made especially for code.",
+   "meaning": "An app for writing code, with colors and helpful hints.",
+   "more": "Popular: Visual Studio Code (free). It colors tags and catches typos.",
+   "example": "Use VS Code to edit theme files instead of Notepad."
+  },
+  {
+   "id": "doctype",
+   "term": "DOCTYPE",
+   "aliases": [
+    "<!doctype html>"
+   ],
+   "compare": "Like the line on a form that says 'This is Form 2026-A'.",
+   "meaning": "The first line of an HTML file that tells the browser 'this is modern HTML'.",
+   "more": "Written <!DOCTYPE html>. Without it browsers use old 'quirks' rules.",
+   "example": "Every WordPress theme's header.php starts the page with a DOCTYPE."
+  },
+  {
+   "id": "head",
+   "term": "<head>",
+   "aliases": [
+    "head section"
+   ],
+   "compare": "Like the back-office paperwork of a store — important but not on the shelves.",
+   "meaning": "The part of an HTML page with info about the page (title, styles), not shown as content.",
+   "more": "Holds <title>, <meta>, <link> to CSS, and some scripts.",
+   "example": "Plugins like Yoast add SEO tags into the <head>."
+  },
+  {
+   "id": "body",
+   "term": "<body>",
+   "aliases": [
+    "body section"
+   ],
+   "compare": "Like the store's display floor where customers walk.",
+   "meaning": "The part of an HTML page holding everything you see.",
+   "more": "Headings, paragraphs, images, links all go inside <body>.",
+   "example": "Your post content ends up somewhere inside <body>."
+  },
+  {
+   "id": "nesting",
+   "term": "Nesting",
+   "aliases": [
+    "nested"
+   ],
+   "compare": "Like boxes inside boxes.",
+   "meaning": "Putting elements inside other elements.",
+   "more": "Close inner tags before outer ones: <p><strong>Hi</strong></p>, not <p><strong>Hi</p></strong>.",
+   "example": "Broken nesting can mess up a page layout in WordPress."
+  },
+  {
+   "id": "link-tag",
+   "term": "Hyperlink",
+   "aliases": [
+    "hyperlink",
+    "anchor",
+    "<a>"
+   ],
+   "compare": "Like a door from one room to another.",
+   "meaning": "Clickable text or image that takes you to another page.",
+   "more": "Made with <a href=\"url\">text</a>.",
+   "example": "Menu items in WordPress are hyperlinks."
+  },
+  {
+   "id": "alt-text",
+   "term": "Alt text",
+   "aliases": [
+    "alt"
+   ],
+   "compare": "Like describing a photo to a friend over the phone.",
+   "meaning": "A text description of an image for screen readers and when images fail to load.",
+   "more": "Written as alt=\"...\" on <img>. Important for accessibility and government web standards.",
+   "example": "Fill the 'Alternative Text' field when uploading images in WordPress."
+  },
+  {
+   "id": "accessibility",
+   "term": "Accessibility",
+   "aliases": [
+    "a11y"
+   ],
+   "compare": "Like adding ramps and braille signs to a building.",
+   "meaning": "Making websites usable by everyone, including people with disabilities.",
+   "more": "Good contrast, alt text, labels, keyboard support, headings in order.",
+   "example": "Government sites should be accessible to all citizens."
+  },
+  {
+   "id": "semantic",
+   "term": "Semantic HTML",
+   "aliases": [
+    "semantic"
+   ],
+   "compare": "Like labeling rooms 'kitchen' and 'bedroom' instead of 'room 1' and 'room 2'.",
+   "meaning": "Using tags that describe meaning, like <nav>, <header>, <article>.",
+   "more": "Helps screen readers and search engines understand the page.",
+   "example": "Good WordPress themes use semantic tags."
+  },
+  {
+   "id": "seo",
+   "term": "SEO",
+   "aliases": [
+    "search engine optimization"
+   ],
+   "compare": "Like putting a clear sign and directions so people can find your store.",
+   "meaning": "Making a site easy for search engines like Google to find and understand.",
+   "more": "Titles, headings, descriptions, fast pages and good links all help.",
+   "example": "An SEO plugin helps set page titles and descriptions."
+  },
+  {
+   "id": "upload",
+   "term": "Upload / Download",
+   "aliases": [
+    "download",
+    "uploading"
+   ],
+   "compare": "Upload = sending a package out; download = receiving one.",
+   "meaning": "Upload: copy from your device to a server. Download: copy from a server to your device.",
+   "more": "Direction is always from YOUR point of view.",
+   "example": "Adding an image to the Media Library is an upload."
+  },
+  {
+   "id": "log",
+   "term": "Log",
+   "aliases": [
+    "logs",
+    "log file"
+   ],
+   "compare": "Like a security guard's logbook of who came and went.",
+   "meaning": "A file where programs write down what happened, including errors.",
+   "more": "IIS logs are in C:\\inetpub\\logs. PHP errors go to an error log.",
+   "example": "Check the logs when the site shows a white screen."
+  }
+ ]
+}

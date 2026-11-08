@@ -1,0 +1,332 @@
+{
+  "unit": 3,
+  "lessons": [
+    {
+      "id": "u3-l1",
+      "title": "What HTML is",
+      "minutes": 5,
+      "cards": [
+        {
+          "title": "The skeleton of a page",
+          "compare": "A house has a frame: walls, rooms, doors. Paint and furniture come later.",
+          "simple": "[[HTML]] is the skeleton of a web page. It says: this is a title, this is a paragraph, this is a picture.",
+          "normal": "[[HTML]] gives a web page its **structure**. It tells the browser what each part is: a heading, a paragraph, a list, an image, a link.",
+          "technical": "HTML (HyperText Markup Language) describes document structure and meaning. The browser parses it into a tree called the DOM, which [[CSS]] styles and [[JavaScript]] can change."
+        },
+        {
+          "title": "HTML is labels, not math",
+          "compare": "Like putting sticky labels on parts of a document: \"Title\", \"Important\", \"Note\".",
+          "simple": "HTML doesn't calculate anything. It only **labels** things. That's why it's called [[markup]].",
+          "normal": "HTML is a [[markup]] language, not a programming language. It can't add numbers or make decisions — it only describes content. That makes it the easiest place to start.",
+          "technical": "Being declarative, HTML has no variables, conditions or loops. Logic comes from [[JavaScript]] (in the browser) or [[PHP]] (on the server, generating HTML)."
+        },
+        {
+          "title": "The three partners",
+          "compare": "Skeleton (HTML) + clothes (CSS) + muscles that move (JavaScript).",
+          "simple": "**HTML** = what it is. **CSS** = how it looks. **JavaScript** = what it does.",
+          "normal": "Every web page uses up to three languages: [[HTML]] for structure, [[CSS]] for style, and [[JavaScript]] for behavior. Today we focus on the skeleton.",
+          "technical": "Separation of concerns: keep content in HTML, presentation in CSS, behavior in JS. This makes pages easier to maintain, more accessible and faster."
+        },
+        {
+          "title": "HTML is just a text file",
+          "compare": "Like a letter written in Notepad — nothing magic.",
+          "simple": "An HTML file is plain text. Its name ends with `.html`. You can write one in Notepad.",
+          "normal": "An HTML file is plain text saved with `.html` at the end. Open it in a browser and the browser turns the labels into a real page. A [[code-editor|code editor]] like VS Code makes it easier.",
+          "technical": "HTML files are UTF-8 text served with the `text/html` content type. The server can send a static `.html` file or generate HTML dynamically (as WordPress does with PHP).",
+          "code": "<h1>Hello, NRCP!</h1>\n<p>This is my first web page.</p>"
+        }
+      ],
+      "recap": [
+        "[[HTML]] is the structure (skeleton) of every web page.",
+        "It labels content; it doesn't calculate.",
+        "HTML = what it is, CSS = how it looks, JS = what it does."
+      ],
+      "atMyJob": "In the WordPress editor, click the ⋮ menu → **Code editor**. Everything you see there is HTML that WordPress saves for your post. Your theme's PHP files also output HTML.",
+      "quiz": [
+        { "type": "mc", "q": "What is HTML's job?", "options": ["Give the page structure", "Make the page colorful", "Store posts"], "answer": 0,
+          "why": ["", "That's CSS — the clothes.", "That's the database (MySQL)."], "explain": "Yes — HTML is the skeleton." },
+        { "type": "mc", "q": "Is HTML a programming language?", "options": ["Yes, it can calculate", "No, it's a markup language that labels content"], "answer": 1, "explain": "Right! It describes — it doesn't calculate." },
+        { "type": "fill", "q": "HTML files end with the extension .___", "answer": "html", "accept": [".html", "htm"], "explain": "Correct — .html" },
+        { "type": "order", "q": "Match the order: skeleton, clothes, movement", "items": ["HTML", "CSS", "JavaScript"] }
+      ]
+    },
+    {
+      "id": "u3-l2",
+      "title": "Tags: the labels of HTML",
+      "minutes": 6,
+      "cards": [
+        {
+          "title": "What a tag looks like",
+          "compare": "Like putting a word between two bookends.",
+          "simple": "A [[tag]] is a word inside pointy brackets, like `<p>`. It means \"a paragraph starts here.\"",
+          "normal": "A [[tag]] is a label inside angle brackets `< >`. `<p>` opens a paragraph. `</p>` (with a slash) closes it.",
+          "technical": "Tags delimit elements. An opening tag `<p>`, content, and a closing tag `</p>` with a forward slash. Tag names are case-insensitive but written lowercase by convention.",
+          "code": "<p>This is a paragraph.</p>"
+        },
+        {
+          "title": "Open and close",
+          "compare": "Opening and closing a bracket in math: ( … ).",
+          "simple": "Most tags come in pairs. One opens. One closes. The closing one has a slash: `/`.",
+          "normal": "Tags usually come in pairs. Together with the content, they form an [[element]]. Forgetting to close one is a very common [[bug]].",
+          "technical": "An [[element]] = opening tag + content + closing tag. Browsers try to fix missing closing tags, but results may be unexpected — always close them."
+        },
+        {
+          "title": "Some tags are alone",
+          "compare": "Like a stamp — one mark, nothing inside.",
+          "simple": "Some tags have nothing inside, so they don't need closing. Example: `<img>` for a picture, `<br>` for a new line.",
+          "normal": "Some elements are **empty** (void) — they have no content, so there's no closing tag. Examples: `<img>` (image), `<br>` (line break), `<hr>` (line), `<input>`.",
+          "technical": "Void elements: area, base, br, col, embed, hr, img, input, link, meta, source, track, wbr. You may see `<br />` — the slash is optional in HTML5.",
+          "code": "Line one<br>Line two\n<img src=\"logo.png\" alt=\"NRCP logo\">"
+        },
+        {
+          "title": "Attributes: extra details",
+          "compare": "Like writing \"FRAGILE\" or \"Deliver to Room 3\" on a box label.",
+          "simple": "Tags can have extra details inside. These are [[attribute|attributes]]. Example: `src` tells which picture to show.",
+          "normal": "[[Attribute|Attributes]] add information to an opening tag. They're written `name=\"value\"`. Example: `<img src=\"cat.jpg\" alt=\"A sleeping cat\">`.",
+          "technical": "Attributes live in the opening tag only. Common global attributes: id, class, style, lang, title, hidden. Values should be quoted. Boolean attributes (like `disabled`) need no value."
+        },
+        {
+          "title": "Boxes inside boxes",
+          "compare": "A small box inside a bigger box. Close the small one first.",
+          "simple": "You can put tags inside tags. That's [[nesting]]. Close the inside one first.",
+          "normal": "Elements can sit inside other elements — that's [[nesting]]. Rule: **last opened, first closed**.",
+          "technical": "Nesting builds the DOM tree (parent/child). Mis-nesting like `<p><b>hi</p></b>` is invalid; browsers repair it in unpredictable ways.",
+          "code": "Good: <p>I am <strong>very</strong> happy.</p>\nBad:  <p>I am <strong>very</p></strong>"
+        }
+      ],
+      "recap": [
+        "A [[tag]] is a label in angle brackets: `<p>` opens, `</p>` closes.",
+        "Some tags (like `<img>`) are alone and don't close.",
+        "[[Attribute|Attributes]] add details; tags can be nested inside each other."
+      ],
+      "atMyJob": "When a WordPress post layout looks broken (everything turned bold, or a sidebar dropped down), a missing closing tag is often the reason. Switch to Code editor and look for an unclosed `<strong>` or `<div>`.",
+      "quiz": [
+        { "type": "mc", "q": "Which is a closing tag?", "options": ["<p>", "</p>", "<p/>"], "answer": 1, "explain": "Yes — the slash at the start means closing.", "hint": "Look for the slash right after <" },
+        { "type": "mc", "q": "Which nesting is correct?", "options": ["<p><em>hi</p></em>", "<p><em>hi</em></p>"], "answer": 1, "explain": "Right — close the inside one first.", "why": ["Not quite — here <p> closes before <em>. Inside box must close first."] },
+        { "type": "fill", "q": "In <img src=\"logo.png\">, the word src is called an ___.", "answer": "attribute", "accept": ["attributes", "an attribute"], "hint": "It starts with 'att'.", "explain": "Correct — it's an attribute." },
+        { "type": "order", "q": "Build a paragraph element in order:", "items": ["<p>", "Hello there!", "</p>"] }
+      ]
+    },
+    {
+      "id": "u3-l3",
+      "title": "The basic page structure",
+      "minutes": 6,
+      "cards": [
+        {
+          "title": "Every page has the same frame",
+          "compare": "Every official letter has the same parts: letterhead, body, signature.",
+          "simple": "Every HTML page starts the same way. Learn this frame once, use it forever.",
+          "normal": "All HTML pages share a basic frame: a [[doctype]] line, then `<html>`, which holds a [[head]] and a [[body]].",
+          "technical": "Minimal valid HTML5: doctype, html (with lang), head (meta charset, viewport, title) and body.",
+          "code": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"utf-8\">\n    <title>My page</title>\n  </head>\n  <body>\n    <h1>Hello!</h1>\n  </body>\n</html>"
+        },
+        {
+          "title": "The DOCTYPE line",
+          "compare": "Like the form number at the top: \"This is Form 2026-A.\"",
+          "simple": "The first line, `<!DOCTYPE html>`, tells the browser: \"This is a modern web page.\"",
+          "normal": "[[DOCTYPE]] tells the browser to use modern HTML rules. Without it, the browser may act in an old, strange way.",
+          "technical": "`<!DOCTYPE html>` triggers standards mode. Omitting it causes quirks mode, emulating old browser bugs (different box model, etc.)."
+        },
+        {
+          "title": "The head: info about the page",
+          "compare": "The back office of a store: paperwork, not displays.",
+          "simple": "The [[head]] holds info **about** the page, like its title in the browser tab. You don't see it on the page.",
+          "normal": "The [[head]] contains information about the page: the `<title>` (shown on the tab), `<meta>` settings, and links to [[CSS]] files. It's not shown as page content.",
+          "technical": "Head contents: title, meta (charset, viewport, description), link (stylesheets, icons, manifest), script, base. Search engines and social sites read these."
+        },
+        {
+          "title": "The body: what you see",
+          "compare": "The store's display floor where customers walk.",
+          "simple": "The [[body]] holds everything you see: words, pictures, buttons.",
+          "normal": "The [[body]] contains all visible content. Everything from the logo to the footer goes inside `<body>`.",
+          "technical": "Body content is usually organized with [[semantic]] sections: `<header>`, `<nav>`, `<main>`, `<article>`, `<aside>`, `<footer>`."
+        }
+      ],
+      "recap": [
+        "Every page: [[DOCTYPE]] → `<html>` → `<head>` + `<body>`.",
+        "[[head]] = info about the page (title, settings).",
+        "[[body]] = everything you see."
+      ],
+      "atMyJob": "In a WordPress theme, `header.php` prints the DOCTYPE, `<head>` and the start of `<body>`. `footer.php` closes the body and html. Plugins add things into the head using a function called `wp_head()`.",
+      "quiz": [
+        { "type": "mc", "q": "Where does the page title (shown on the browser tab) go?", "options": ["In the <body>", "In the <head>", "After </html>"], "answer": 1, "explain": "Yes — <title> lives in the head." },
+        { "type": "mc", "q": "Where do pictures and paragraphs go?", "options": ["<head>", "<body>"], "answer": 1, "explain": "Correct — the body is everything you see." },
+        { "type": "fill", "q": "The very first line of an HTML page is <!___ html>", "answer": "DOCTYPE", "accept": ["doctype"], "explain": "Yes — <!DOCTYPE html>" },
+        { "type": "order", "q": "Put the page parts in order from top to bottom:", "items": ["<!DOCTYPE html>", "<html>", "<head>…</head>", "<body>…</body>", "</html>"] }
+      ]
+    },
+    {
+      "id": "u3-l4",
+      "title": "Headings and paragraphs",
+      "minutes": 5,
+      "cards": [
+        {
+          "title": "Headings: h1 to h6",
+          "compare": "Like a newspaper: big headline, smaller sub-headlines.",
+          "simple": "Headings are titles. `<h1>` is the biggest. `<h6>` is the smallest.",
+          "normal": "There are six heading levels: `<h1>` (main title) down to `<h6>`. Use them in order, like an outline — not just to make text big.",
+          "technical": "Headings define the document outline. Screen reader users jump between headings; search engines use them for context. Use one `<h1>` per page and don't skip levels.",
+          "code": "<h1>Research Council News</h1>\n<h2>Upcoming events</h2>\n<h3>March seminar</h3>"
+        },
+        {
+          "title": "Paragraphs",
+          "compare": "Like paragraphs in a letter — each one a block of related sentences.",
+          "simple": "Normal text goes in `<p>`. Each `<p>` is one paragraph.",
+          "normal": "`<p>` holds a paragraph of text. Pressing Enter in your HTML file does **not** make a new line on the page — you need a new `<p>` (or `<br>`).",
+          "technical": "Browsers collapse whitespace: multiple spaces and line breaks become one space. Use `<p>` for paragraphs, `<br>` only for line breaks within content like addresses."
+        },
+        {
+          "title": "Important and emphasized words",
+          "compare": "Like underlining words with a marker when you read.",
+          "simple": "`<strong>` makes words important (usually **bold**). `<em>` adds emphasis (usually *italic*).",
+          "normal": "`<strong>` = important, shown bold. `<em>` = emphasis, shown italic. These carry **meaning**, so screen readers can stress them.",
+          "technical": "Prefer [[semantic]] `<strong>`/`<em>` over presentational `<b>`/`<i>`. Visual styling belongs in CSS.",
+          "code": "<p>Please <strong>back up</strong> before updating. It is <em>really</em> important.</p>"
+        }
+      ],
+      "recap": [
+        "Headings `<h1>`–`<h6>` work like an outline.",
+        "`<p>` makes paragraphs; Enter in your file doesn't.",
+        "`<strong>` = important, `<em>` = emphasis."
+      ],
+      "atMyJob": "In WordPress, the post title is usually the `<h1>`. Inside your post, use **Heading 2** and **Heading 3** blocks for sections — never another H1. This helps Google and screen-reader users, which matters for government accessibility standards.",
+      "quiz": [
+        { "type": "mc", "q": "Which heading is the biggest / most important?", "options": ["<h6>", "<h1>", "<h3>"], "answer": 1, "explain": "Yes — h1 is the main heading." },
+        { "type": "mc", "q": "You press Enter twice in your HTML file between two sentences. What happens on the page?", "options": ["Two new lines appear", "Nothing — they stay on the same line"], "answer": 1, "explain": "Right — browsers ignore extra line breaks. Use <p> or <br>.", "why": ["Surprising, right? Browsers collapse line breaks into one space."] },
+        { "type": "fill", "q": "The tag for a paragraph is <___>", "answer": "p", "accept": ["<p>"], "explain": "Correct — p for paragraph." },
+        { "type": "order", "q": "Arrange from biggest heading to smallest:", "items": ["<h1>", "<h2>", "<h3>", "<h4>"] }
+      ]
+    },
+    {
+      "id": "u3-l5",
+      "title": "Links and images",
+      "minutes": 6,
+      "cards": [
+        {
+          "title": "Links: doors between pages",
+          "compare": "A door from one room to another.",
+          "simple": "A link takes you to another page. It uses the `<a>` tag and an `href` that says where to go.",
+          "normal": "A [[hyperlink]] uses `<a href=\"…\">`. The `href` [[attribute]] is the destination [[URL]]. The text between the tags is what people click.",
+          "technical": "Anchor element `<a>`. href can be absolute (`https://…`), relative (`about.html`), a fragment (`#contact`), `mailto:` or `tel:`. Add `target=\"_blank\" rel=\"noopener\"` to open safely in a new tab.",
+          "code": "<a href=\"https://www.dost.gov.ph\">Visit DOST</a>\n<a href=\"contact.html\">Contact us</a>"
+        },
+        {
+          "title": "Good link text",
+          "compare": "A door sign that says \"Kitchen\" is better than one that says \"Door\".",
+          "simple": "Write link text that says where it goes. Not \"click here\".",
+          "normal": "Good link text describes the destination: \"Download the 2026 annual report\" instead of \"click here\". It helps everyone, especially screen-reader users.",
+          "technical": "Screen readers can list all links out of context, so \"click here\" ×10 is useless. Descriptive link text also helps SEO."
+        },
+        {
+          "title": "Images",
+          "compare": "Hanging a framed photo on the wall.",
+          "simple": "`<img>` shows a picture. `src` says which picture.",
+          "normal": "`<img src=\"photo.jpg\" alt=\"…\">` shows an image. `src` is the file location. It's a single tag — no closing.",
+          "technical": "Use `width`/`height` to prevent layout shift, `loading=\"lazy\"` for below-the-fold images, and modern formats (WebP/AVIF). `srcset` lets the browser pick sizes.",
+          "code": "<img src=\"images/team.jpg\" alt=\"NRCP staff at the 2026 general assembly\">"
+        },
+        {
+          "title": "Alt text: describe the picture",
+          "compare": "Like describing a photo to a friend over the phone.",
+          "simple": "[[alt text|Alt text]] describes the picture in words. Blind users hear it. It also shows if the picture fails to load.",
+          "normal": "The `alt` attribute is a text description for screen readers and broken images. Describe what matters: \"Graph showing funding rose in 2026\". Purely decorative images get `alt=\"\"`.",
+          "technical": "alt is required for valid HTML and [[accessibility]] compliance (WCAG 1.1.1). Empty alt marks decorative images so screen readers skip them."
+        }
+      ],
+      "recap": [
+        "Links: `<a href=\"where\">text</a>` — use clear link text.",
+        "Images: `<img src=\"file\" alt=\"description\">`.",
+        "[[alt text|Alt text]] helps blind users and shows when images fail."
+      ],
+      "atMyJob": "When you upload to the WordPress Media Library, fill in **Alternative Text** — that becomes the `alt` attribute. For links in posts, use the link button and write meaningful text like \"Apply for the research grant\".",
+      "quiz": [
+        { "type": "mc", "q": "Which attribute tells a link where to go?", "options": ["src", "href", "alt"], "answer": 1, "why": ["src is for images (the picture's source).", "", "alt is the image description."], "explain": "Yes — href is the destination." },
+        { "type": "mc", "q": "Which is the best link text?", "options": ["Click here", "Download the 2026 annual report (PDF)", "Link"], "answer": 1, "explain": "Exactly — it says where it goes." },
+        { "type": "fill", "q": "The attribute that describes an image in words is ___.", "answer": "alt", "accept": ["alt text"], "explain": "Correct — alt." },
+        { "type": "order", "q": "Build a link in order:", "items": ["<a href=\"about.html\">", "About us", "</a>"] }
+      ]
+    },
+    {
+      "id": "u3-l6",
+      "title": "Lists",
+      "minutes": 4,
+      "cards": [
+        {
+          "title": "Bullet lists",
+          "compare": "A grocery list — order doesn't matter.",
+          "simple": "`<ul>` makes a bullet list. Each item goes in `<li>`.",
+          "normal": "`<ul>` = unordered list (bullets). Each item is an `<li>` (list item). Use it when order doesn't matter.",
+          "technical": "`<ul>` contains only `<li>` children. Navigation menus are usually a `<ul>` inside `<nav>`, styled with CSS.",
+          "code": "<ul>\n  <li>Eggs</li>\n  <li>Rice</li>\n  <li>Coffee</li>\n</ul>"
+        },
+        {
+          "title": "Numbered lists",
+          "compare": "Cooking steps — order matters!",
+          "simple": "`<ol>` makes a numbered list. Use it for steps.",
+          "normal": "`<ol>` = ordered list (numbers). Use it for steps where order matters, like instructions.",
+          "technical": "`<ol>` supports `start`, `reversed` and `type` attributes. Screen readers announce \"list, 3 items\" for both types.",
+          "code": "<ol>\n  <li>Back up the site</li>\n  <li>Update plugins</li>\n  <li>Test the site</li>\n</ol>"
+        },
+        {
+          "title": "Lists inside lists",
+          "compare": "Main topics with sub-points, like an outline.",
+          "simple": "You can put a list inside a list item. Great for menus with sub-menus.",
+          "normal": "Nest a new `<ul>` or `<ol>` **inside** an `<li>` to make sub-items. WordPress dropdown menus are built this way.",
+          "technical": "The nested list must be a child of `<li>`, not of `<ul>` directly. WordPress `wp_nav_menu()` outputs nested `<ul class=\"sub-menu\">`."
+        }
+      ],
+      "recap": [
+        "`<ul>` = bullets; `<ol>` = numbers.",
+        "Every item is an `<li>`.",
+        "Nested lists go inside an `<li>` (like sub-menus)."
+      ],
+      "atMyJob": "Your WordPress navigation menu is really a `<ul>` list of links. Right-click the menu on your site in a desktop browser → **Inspect** to see the `<ul>` and `<li>` tags.",
+      "quiz": [
+        { "type": "mc", "q": "Which list is best for step-by-step instructions?", "options": ["<ul>", "<ol>"], "answer": 1, "explain": "Yes — ordered lists show numbered steps." },
+        { "type": "fill", "q": "Each item in a list goes inside <___>", "answer": "li", "accept": ["<li>"], "hint": "Short for 'list item'.", "explain": "Correct — li." },
+        { "type": "order", "q": "Build a bullet list in order:", "items": ["<ul>", "<li>Eggs</li>", "<li>Rice</li>", "</ul>"] }
+      ]
+    },
+    {
+      "id": "u3-l7",
+      "title": "Forms: letting visitors send information",
+      "minutes": 6,
+      "cards": [
+        {
+          "title": "A paper form, but online",
+          "compare": "An application form with blanks to fill in and a Submit button.",
+          "simple": "A [[form]] lets visitors type and send things, like a message or a search.",
+          "normal": "A [[form]] collects information. It's made of `<form>` containing inputs (boxes to type in) and a submit button.",
+          "technical": "`<form action=\"/submit\" method=\"post\">` sends named fields to the server. GET puts data in the URL (searches); POST puts it in the request body (logins, messages).",
+          "code": "<form action=\"/send\" method=\"post\">\n  <label for=\"name\">Your name</label>\n  <input id=\"name\" name=\"name\">\n  <button>Send</button>\n</form>"
+        },
+        {
+          "title": "Inputs and labels",
+          "compare": "Each blank on a paper form has a printed label next to it.",
+          "simple": "`<input>` is a box to type in. `<label>` is its name tag. Always use both.",
+          "normal": "Every `<input>` needs a `<label>`. Connect them: the label's `for` matches the input's `id`. Then tapping the label focuses the box, and screen readers read it aloud.",
+          "technical": "Input types: text, email, tel, number, date, password, checkbox, radio, file. The right type shows the right iPhone keyboard (e.g. `type=\"email\"` shows @)."
+        },
+        {
+          "title": "Where does the data go?",
+          "compare": "You drop the paper form in a box; someone in the office reads it.",
+          "simple": "When you press Send, the form goes to the [[server]]. Code there (like [[PHP]]) reads it.",
+          "normal": "HTML only **shows** the form. Something on the [[server]] — like PHP or a WordPress form [[plugin]] — must receive and process the data.",
+          "technical": "The server reads POST fields (PHP: `$_POST['name']`). Always validate and sanitize on the server — browser checks (`required`) can be bypassed. Protect against spam with CAPTCHA or honeypots."
+        }
+      ],
+      "recap": [
+        "A [[form]] = `<form>` + inputs + a button.",
+        "Every input needs a `<label>`.",
+        "The server (PHP / a plugin) processes the data — HTML only shows the form."
+      ],
+      "atMyJob": "Contact or feedback forms on your agency site usually come from a plugin (like Contact Form 7 or WPForms). The plugin writes the HTML form and the PHP that emails or stores the message. If forms stop sending, check the plugin and the server's email settings.",
+      "quiz": [
+        { "type": "mc", "q": "Which tag is a box where visitors type?", "options": ["<input>", "<label>", "<li>"], "answer": 0, "why": ["", "label is the name tag next to the box.", "li is a list item."], "explain": "Yes — input." },
+        { "type": "mc", "q": "Who actually processes the form data after you press Send?", "options": ["HTML", "The server (e.g. PHP or a plugin)", "CSS"], "answer": 1, "explain": "Right — HTML only shows the form." },
+        { "type": "fill", "q": "To show the @ keyboard on iPhone, use <input type=\"___\">", "answer": "email", "explain": "Correct — type=\"email\"." },
+        { "type": "order", "q": "Put the form journey in order:", "items": ["Visitor fills in the form", "Visitor taps Send", "Data travels to the server", "PHP or a plugin processes it"] }
+      ]
+    }
+  ]
+}

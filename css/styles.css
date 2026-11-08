@@ -77,6 +77,7 @@ a { color: var(--brand); }
 .topbar h1 { margin: 0; font-size: 1.1rem; }
 
 main {
+  position: relative;
   padding: 16px calc(16px + env(safe-area-inset-right)) 16px calc(16px + env(safe-area-inset-left));
   max-width: 720px; margin: 0 auto;
 }
@@ -167,7 +168,9 @@ textarea { min-height: 120px; resize: vertical; }
   -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px;
 }
 .deck::-webkit-scrollbar { display: none; }
-.slide { flex: 0 0 100%; scroll-snap-align: center; min-height: 52vh; }
+/* position: relative keeps hidden screen-reader labels inside their card
+   (otherwise they float off to the right and make the whole page scroll sideways) */
+.slide { flex: 0 0 100%; scroll-snap-align: center; min-height: 52vh; position: relative; }
 .slide .card { min-height: 100%; }
 .slide h2 { color: var(--brand); }
 .dots { display: flex; justify-content: center; gap: 6px; margin: 10px 0; flex-wrap: wrap; }
