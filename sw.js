@@ -6,7 +6,7 @@
    IMPORTANT: when you change any file, raise the VERSION number.
    That tells phones "there is a new copy, download it again".
    ========================================================= */
-const VERSION = 'techbasics-v1';
+const VERSION = 'techbasics-v2';
 
 // Every file the app needs. If you add a new unit JSON file, add it here too.
 const FILES = [

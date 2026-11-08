@@ -170,13 +170,21 @@ textarea { min-height: 120px; resize: vertical; }
 .deck::-webkit-scrollbar { display: none; }
 /* position: relative keeps hidden screen-reader labels inside their card
    (otherwise they float off to the right and make the whole page scroll sideways) */
-.slide { flex: 0 0 100%; scroll-snap-align: center; min-height: 52vh; position: relative; }
-.slide .card { min-height: 100%; }
+.slide { flex: 0 0 100%; scroll-snap-align: center; position: relative; }
+/* align-items: flex-start = each card is only as tall as its own text */
+.deck { align-items: flex-start; transition: height .2s; }
+.slide .card { margin-bottom: 0; }
 .slide h2 { color: var(--brand); }
 .dots { display: flex; justify-content: center; gap: 6px; margin: 10px 0; flex-wrap: wrap; }
 .dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
 .dots i.on { background: var(--brand); width: 20px; border-radius: 4px; }
 .deck-nav { display: flex; gap: 10px; }
+/* Back / Read aloud / Next stay pinned just above the bottom tab bar */
+.deck-bar {
+  position: sticky; z-index: 5;
+  bottom: calc(64px + env(safe-area-inset-bottom));
+  background: var(--bg); padding: 4px 0 8px; margin-top: 8px;
+}
 .deck-nav .btn { flex: 1; }
 
 /* Underlined jargon words (they are buttons, so keyboard users can open them too) */
@@ -244,5 +252,4 @@ dialog::backdrop { background: rgba(0,0,0,.4); }
 @media (min-width: 768px) {
   .tabbar { justify-content: center; gap: 24px; }
   .tabbar a { flex: 0 0 90px; }
-  .slide { min-height: 40vh; }
 }

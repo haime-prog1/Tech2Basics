@@ -57,20 +57,33 @@ export async function render(main, [id]) {
         ${nextL ? `<a class="btn block" href="#/lesson/${nextL.id}">Next lesson: ${esc(nextL.title)} ›</a>` : ''}
       </div></section>
     </div>
+    <div class="deck-bar">
     <div class="dots" aria-hidden="true">${Array.from({ length: total }, (_, i) => `<i class="${i ? '' : 'on'}"></i>`).join('')}</div>
     <div class="deck-nav">
       <button class="btn secondary" id="prev">‹ Back</button>
       <button class="btn secondary" id="say" aria-label="Read this card aloud">🔊</button>
       <button class="btn" id="next">Next ›</button>
-    </div>`;
+    </div></div>`;
 
   const deck = $('#deck');
   const index = () => Math.round(deck.scrollLeft / deck.clientWidth);
   const go = (i) => deck.scrollTo({ left: Math.max(0, Math.min(total - 1, i)) * deck.clientWidth, behavior: 'smooth' });
 
   // Update the dots and buttons while swiping
+  // Make the deck as tall as the CURRENT card only, so short cards don't leave a big empty gap.
+  const slides = $$('.slide', deck);
+  const fitHeight = () => {
+    const s = slides[index()];
+    if (s && deck.isConnected) deck.style.height = s.offsetHeight + 'px'; // skip if we already left this lesson
+  };
+  fitHeight();
+  window.addEventListener('resize', fitHeight);
+  // The last card grows when quiz feedback appears, so re-measure when it changes size
+  new ResizeObserver(fitHeight).observe(slides[slides.length - 1]);
+
   deck.addEventListener('scroll', () => {
     const i = index();
+    fitHeight();
     $$('.dots i').forEach((d, k) => d.classList.toggle('on', k === i));
     $('#prev').disabled = i === 0;
     $('#next').disabled = i === total - 1;
