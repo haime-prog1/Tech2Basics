@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- ===== Basic page setup ===== -->
+  <meta charset="utf-8">
+  <!-- viewport-fit=cover lets the app use the whole iPhone screen (behind the notch).
+       We then add padding with env(safe-area-inset-*) in the CSS so nothing hides under it. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>TechBasics</title>
+  <meta name="description" content="Learn programming and web systems, one small step at a time.">
+
+  <!-- ===== iPhone "real app" settings ===== -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="TechBasics">
+  <!-- black-translucent = our own background shows under the status bar -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+
+  <!-- Color of the browser bar. Two versions: light phone setting and dark phone setting. -->
+  <meta name="theme-color" content="#f4f7f5" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#14201c" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!-- Screen readers can jump straight to the content -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Top bar: shows the name of the current screen -->
+  <header class="topbar">
+    <h1 id="screen-title">TechBasics</h1>
+  </header>
+
+  <!-- Every screen is drawn inside <main> by the JavaScript files in js/views/ -->
+  <main id="main" tabindex="-1" aria-live="polite"></main>
+
+  <!-- Bottom tab bar, inside thumb reach. Each link changes the #hash address. -->
+  <nav class="tabbar" aria-label="Main">
+    <a href="#/home" data-tab="home"><span aria-hidden="true">🏠</span><b>Home</b></a>
+    <a href="#/path" data-tab="path"><span aria-hidden="true">🗺️</span><b>Path</b></a>
+    <a href="#/dictionary" data-tab="dictionary"><span aria-hidden="true">📖</span><b>Words</b></a>
+    <a href="#/review" data-tab="review"><span aria-hidden="true">🔖</span><b>Review</b></a>
+    <a href="#/settings" data-tab="settings"><span aria-hidden="true">⚙️</span><b>Settings</b></a>
+  </nav>
+
+  <!-- The jargon popup (a native <dialog>, so keyboard + screen reader work out of the box) -->
+  <dialog id="jargon-dialog" aria-labelledby="jargon-title">
+    <div class="dialog-body"></div>
+  </dialog>
+
+  <!-- Small message that pops up at the bottom ("Saved!") -->
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Scripts. "type=module" lets files import each other. Order is handled by app.js. -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

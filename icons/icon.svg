@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Original TechBasics icon: a rounded teal square with a "</>" code sign
+       sitting on three stacked building blocks (= "basics"). -->
+  <rect width="512" height="512" rx="112" fill="#2f7d6d"/>
+  <g fill="#f6e7b4">
+    <rect x="136" y="330" width="240" height="44" rx="12"/>
+    <rect x="166" y="380" width="180" height="40" rx="12" opacity=".8"/>
+  </g>
+  <g fill="none" stroke="#ffffff" stroke-width="34" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="196,130 126,205 196,280"/>
+    <polyline points="316,130 386,205 316,280"/>
+    <line x1="282" y1="118" x2="230" y2="292"/>
+  </g>
+</svg>

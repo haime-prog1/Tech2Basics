@@ -1,0 +1,245 @@
+/* =========================================================
+   TechBasics styles
+   - Mobile (iPhone) first. Bigger screens get extra rules at the bottom.
+   - Colors live in "variables" (--name) so dark mode just swaps them.
+   ========================================================= */
+
+/* ---------- 1. Color tokens (light) ---------- */
+:root {
+  --bg: #f4f7f5;          /* page background: soft mint-white */
+  --card: #ffffff;        /* cards */
+  --text: #1d2a26;        /* main text: very dark green-gray (high contrast) */
+  --muted: #55655f;       /* secondary text (still passes contrast) */
+  --brand: #2f7d6d;       /* calm teal */
+  --brand-ink: #ffffff;   /* text on top of brand color */
+  --soft: #e3efe9;        /* light teal tint for boxes */
+  --accent: #b5651d;      /* warm amber for highlights */
+  --good: #2e7d32;
+  --gentle: #8a5a00;      /* used for "not quite" — not scary red */
+  --line: #d5e0db;
+  --shadow: 0 2px 10px rgba(20, 40, 35, .08);
+  --radius: 16px;
+  --font-scale: 1;        /* changed by the Text size setting */
+  color-scheme: light;
+}
+
+/* ---------- 2. Dark colors ---------- */
+/* Follow the phone's setting, unless the user picked "light" in Settings */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14201c; --card: #1d2b26; --text: #e8f0ec; --muted: #a9bbb3;
+    --brand: #5cc0a8; --brand-ink: #0d1a16; --soft: #233a33; --accent: #f0a860;
+    --good: #81c784; --gentle: #f2c46b; --line: #2f413a;
+    --shadow: 0 2px 10px rgba(0, 0, 0, .35);
+    color-scheme: dark;
+  }
+}
+/* Same dark colors when the user picked "dark" in Settings */
+:root[data-theme="dark"] {
+  --bg: #14201c; --card: #1d2b26; --text: #e8f0ec; --muted: #a9bbb3;
+  --brand: #5cc0a8; --brand-ink: #0d1a16; --soft: #233a33; --accent: #f0a860;
+  --good: #81c784; --gentle: #f2c46b; --line: #2f413a;
+  --shadow: 0 2px 10px rgba(0, 0, 0, .35);
+  color-scheme: dark;
+}
+
+/* ---------- 3. Base ---------- */
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; font-size: calc(18px * var(--font-scale)); }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  /* -apple-system = the iPhone's own font (San Francisco) */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.55;
+  /* Leave room at the bottom for the tab bar + iPhone home bar */
+  padding-bottom: calc(76px + env(safe-area-inset-bottom));
+  -webkit-tap-highlight-color: transparent;
+}
+h1, h2, h3 { line-height: 1.25; }
+h2 { font-size: 1.35rem; margin: .2em 0 .5em; }
+h3 { font-size: 1.1rem; margin: .8em 0 .4em; }
+a { color: var(--brand); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+
+.skip-link { position: absolute; left: -999px; top: 8px; background: var(--card); padding: 8px; z-index: 99; }
+.skip-link:focus { left: 8px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* ---------- 4. Top bar (respects the notch) ---------- */
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--bg);
+  padding: calc(env(safe-area-inset-top) + 8px) calc(16px + env(safe-area-inset-right)) 8px calc(16px + env(safe-area-inset-left));
+  border-bottom: 1px solid var(--line);
+}
+.topbar h1 { margin: 0; font-size: 1.1rem; }
+
+main {
+  padding: 16px calc(16px + env(safe-area-inset-right)) 16px calc(16px + env(safe-area-inset-left));
+  max-width: 720px; margin: 0 auto;
+}
+main:focus { outline: none; }
+
+/* ---------- 5. Bottom tab bar ---------- */
+.tabbar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  display: flex; justify-content: space-around;
+  background: var(--card);
+  border-top: 1px solid var(--line);
+  padding: 4px env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+.tabbar a {
+  flex: 1; min-height: 56px; min-width: 44px;   /* big tap target */
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-decoration: none; color: var(--muted); font-size: .7rem;
+}
+.tabbar a span { font-size: 1.3rem; line-height: 1; }
+.tabbar a b { font-weight: 600; margin-top: 2px; }
+.tabbar a[aria-current="page"] { color: var(--brand); }
+
+/* ---------- 6. Reusable pieces ---------- */
+.card {
+  background: var(--card); border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 18px; margin-bottom: 14px;
+}
+.muted { color: var(--muted); }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+  min-height: 48px; min-width: 44px; padding: 10px 18px;
+  border: 0; border-radius: 12px; font: inherit; font-weight: 600;
+  background: var(--brand); color: var(--brand-ink); cursor: pointer; text-decoration: none;
+}
+.btn.secondary { background: var(--soft); color: var(--text); }
+.btn.small { min-height: 44px; padding: 6px 12px; font-size: .9rem; }
+.btn.block { width: 100%; }
+.btn:disabled { opacity: .5; }
+.row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+.row.spread { justify-content: space-between; }
+
+.progress { height: 12px; background: var(--soft); border-radius: 99px; overflow: hidden; }
+.progress > i { display: block; height: 100%; background: var(--brand); border-radius: 99px; transition: width .4s; }
+
+input[type="text"], input[type="search"], textarea, select {
+  font: inherit; font-size: max(16px, 1rem);  /* 16px+ stops iPhone Safari zooming in */
+  width: 100%; padding: 12px; border-radius: 12px;
+  border: 1px solid var(--line); background: var(--card); color: var(--text);
+}
+textarea { min-height: 120px; resize: vertical; }
+
+.notice { background: var(--soft); border-left: 5px solid var(--accent); padding: 12px 14px; border-radius: 10px; margin-bottom: 14px; }
+
+/* ---------- 7. Learning path map ---------- */
+.path { list-style: none; padding: 0; margin: 0; position: relative; }
+.path::before { /* the vertical "road" line */
+  content: ""; position: absolute; left: 27px; top: 10px; bottom: 10px; width: 4px; background: var(--line); border-radius: 4px;
+}
+.unit { position: relative; padding-left: 70px; margin-bottom: 16px; }
+.unit .dot {
+  position: absolute; left: 6px; top: 14px; width: 46px; height: 46px; border-radius: 50%;
+  display: grid; place-items: center; font-weight: 700;
+  background: var(--card); border: 4px solid var(--line); color: var(--muted);
+}
+.unit.unlocked .dot { border-color: var(--brand); color: var(--brand); }
+.unit.done .dot { background: var(--brand); color: var(--brand-ink); border-color: var(--brand); }
+.unit details summary { cursor: pointer; list-style: none; min-height: 44px; }
+.unit details summary::-webkit-details-marker { display: none; }
+.lesson-list { list-style: none; padding: 0; margin: 10px 0 0; }
+.lesson-list a {
+  display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  min-height: 48px; padding: 8px 10px; border-radius: 10px; text-decoration: none; color: var(--text);
+}
+.lesson-list a:active, .lesson-list a:focus-visible { background: var(--soft); }
+.tag { font-size: .75rem; padding: 2px 8px; border-radius: 99px; background: var(--soft); color: var(--muted); white-space: nowrap; }
+
+/* ---------- 8. Lesson reader ---------- */
+.levels { display: flex; background: var(--soft); border-radius: 12px; padding: 4px; margin-bottom: 12px; }
+.levels button {
+  flex: 1; min-height: 44px; border: 0; border-radius: 9px; font: inherit; font-size: .85rem;
+  background: transparent; color: var(--text); cursor: pointer;
+}
+.levels button[aria-pressed="true"] { background: var(--card); box-shadow: var(--shadow); font-weight: 700; }
+
+/* Cards sit side by side; swiping scrolls them, and each "snaps" into place */
+.deck {
+  display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 4px;
+}
+.deck::-webkit-scrollbar { display: none; }
+.slide { flex: 0 0 100%; scroll-snap-align: center; min-height: 52vh; }
+.slide .card { min-height: 100%; }
+.slide h2 { color: var(--brand); }
+.dots { display: flex; justify-content: center; gap: 6px; margin: 10px 0; flex-wrap: wrap; }
+.dots i { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+.dots i.on { background: var(--brand); width: 20px; border-radius: 4px; }
+.deck-nav { display: flex; gap: 10px; }
+.deck-nav .btn { flex: 1; }
+
+/* Underlined jargon words (they are buttons, so keyboard users can open them too) */
+.jargon {
+  font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer;
+  text-decoration: underline dotted var(--accent) 2px; text-underline-offset: 3px;
+}
+.compare { background: var(--soft); border-radius: 12px; padding: 10px 14px; margin: 10px 0; }
+.compare::before { content: "💡 "; }
+.recap li { margin-bottom: 6px; }
+.job { background: var(--soft); border: 2px dashed var(--brand); border-radius: var(--radius); padding: 16px; margin-bottom: 14px; }
+.job h3 { margin-top: 0; }
+pre, code { font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .85rem; }
+pre { background: var(--soft); padding: 12px; border-radius: 10px; overflow-x: auto; white-space: pre-wrap; }
+
+/* ---------- 9. Quiz ---------- */
+.q { border-top: 1px solid var(--line); padding-top: 14px; margin-top: 14px; }
+.q:first-of-type { border-top: 0; margin-top: 0; padding-top: 0; }
+.options { display: grid; gap: 8px; margin: 10px 0; }
+.option {
+  text-align: left; min-height: 48px; padding: 10px 14px; border-radius: 12px; font: inherit;
+  border: 2px solid var(--line); background: var(--card); color: var(--text); cursor: pointer;
+}
+.option.right { border-color: var(--good); background: color-mix(in srgb, var(--good) 12%, var(--card)); }
+.option.tried { border-color: var(--gentle); opacity: .8; }
+.feedback { border-radius: 10px; padding: 10px 12px; margin-top: 8px; }
+.feedback.good { background: color-mix(in srgb, var(--good) 14%, var(--card)); }
+.feedback.try { background: color-mix(in srgb, var(--gentle) 14%, var(--card)); }
+.order-list { list-style: none; padding: 0; margin: 10px 0; display: grid; gap: 8px; }
+.order-list li {
+  display: flex; align-items: center; gap: 8px; padding: 6px 6px 6px 12px;
+  border: 2px solid var(--line); border-radius: 12px; background: var(--card);
+  touch-action: none; /* lets us drag without the page scrolling */ user-select: none; -webkit-user-select: none;
+}
+.order-list li .grip { cursor: grab; font-size: 1.2rem; color: var(--muted); padding: 8px 4px; }
+.order-list li .txt { flex: 1; }
+.order-list li.dragging { opacity: .6; border-color: var(--brand); }
+.order-list button { min-width: 44px; min-height: 44px; border: 0; background: var(--soft); color: var(--text); border-radius: 10px; font-size: 1rem; }
+
+/* ---------- 10. Dictionary + dialog ---------- */
+.dict-list { list-style: none; padding: 0; margin: 0; }
+.dict-list li { margin-bottom: 10px; }
+.dict-list button.card { width: 100%; text-align: left; font: inherit; color: inherit; border: 0; cursor: pointer; margin: 0; }
+dialog {
+  border: 0; border-radius: 20px; padding: 0; width: min(92vw, 520px);
+  background: var(--card); color: var(--text); box-shadow: 0 10px 40px rgba(0,0,0,.3);
+  margin-bottom: calc(16px + env(safe-area-inset-bottom));
+}
+dialog::backdrop { background: rgba(0,0,0,.4); }
+.dialog-body { padding: 20px; }
+
+/* ---------- 11. Toast ---------- */
+#toast {
+  position: fixed; left: 50%; transform: translateX(-50%) translateY(20px);
+  bottom: calc(84px + env(safe-area-inset-bottom)); z-index: 30;
+  background: var(--text); color: var(--bg); padding: 10px 18px; border-radius: 99px;
+  opacity: 0; transition: .25s; pointer-events: none;
+}
+#toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ---------- 12. Respect "reduce motion" ---------- */
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+
+/* ---------- 13. Bigger screens (tablet / desktop) ---------- */
+@media (min-width: 768px) {
+  .tabbar { justify-content: center; gap: 24px; }
+  .tabbar a { flex: 0 0 90px; }
+  .slide { min-height: 40vh; }
+}
