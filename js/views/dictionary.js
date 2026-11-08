@@ -5,7 +5,9 @@ import { $, esc, setTitle } from '../util.js';
 
 export async function render(main) {
   setTitle('Jargon Dictionary');
-  const terms = (await getDictionary()).slice().sort((a, b) => a.term.localeCompare(b.term));
+  // Sort A→Z by letters only, so "<body>" sorts under B, not at the top
+  const plain = (t) => t.term.replace(/[^a-z0-9]/gi, '');
+  const terms = (await getDictionary()).slice().sort((a, b) => plain(a).localeCompare(plain(b)));
 
   main.innerHTML = `
     <label for="q" class="sr-only">Search words</label>

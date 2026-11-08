@@ -40,11 +40,12 @@
 
   <!-- Bottom tab bar, inside thumb reach. Each link changes the #hash address. -->
   <nav class="tabbar" aria-label="Main">
-    <a href="#/home" data-tab="home"><span aria-hidden="true">🏠</span><b>Home</b></a>
-    <a href="#/path" data-tab="path"><span aria-hidden="true">🗺️</span><b>Path</b></a>
-    <a href="#/dictionary" data-tab="dictionary"><span aria-hidden="true">📖</span><b>Words</b></a>
-    <a href="#/review" data-tab="review"><span aria-hidden="true">🔖</span><b>Review</b></a>
-    <a href="#/settings" data-tab="settings"><span aria-hidden="true">⚙️</span><b>Settings</b></a>
+    <!-- Icons are small hand-drawn SVGs (original). class="fill" parts get tinted on the active tab. -->
+    <a href="#/home" data-tab="home"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="fill" d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-4.5v-6h-5v6H5a1 1 0 0 1-1-1z"/></svg><b>Home</b></a>
+    <a href="#/path" data-tab="path"><svg viewBox="0 0 24 24" aria-hidden="true"><circle class="fill" cx="6" cy="18" r="2.5"/><circle class="fill" cx="18" cy="6" r="2.5"/><path d="M8.5 18H15a3 3 0 0 0 0-6H9a3 3 0 0 1 0-6h6.5"/></svg><b>Path</b></a>
+    <a href="#/dictionary" data-tab="dictionary"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="fill" d="M4 5.5A1.5 1.5 0 0 1 5.5 4H12v16H5.5A1.5 1.5 0 0 1 4 18.5z"/><path d="M12 4h6.5A1.5 1.5 0 0 1 20 5.5v13a1.5 1.5 0 0 1-1.5 1.5H12M12 4v16"/></svg><b>Words</b></a>
+    <a href="#/review" data-tab="review"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="fill" d="M6 4h12v17l-6-4-6 4z"/></svg><b>Review</b></a>
+    <a href="#/settings" data-tab="settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle class="fill" cx="16" cy="7" r="2"/><circle class="fill" cx="10" cy="17" r="2"/></svg><b>Settings</b></a>
   </nav>
 
   <!-- The jargon popup (a native <dialog>, so keyboard + screen reader work out of the box) -->

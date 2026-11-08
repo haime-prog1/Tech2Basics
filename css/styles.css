@@ -253,3 +253,117 @@ dialog::backdrop { background: rgba(0,0,0,.4); }
   .tabbar { justify-content: center; gap: 24px; }
   .tabbar a { flex: 0 0 90px; }
 }
+
+/* =========================================================
+   14. UI POLISH LAYER
+   These rules come last, so they refine everything above.
+   ========================================================= */
+
+/* A second brand shade (for gradients) and softer, layered shadows */
+:root { --brand-2: #3f9c86; --radius: 20px; --shadow: 0 1px 2px rgba(20,40,35,.06), 0 8px 24px rgba(20,40,35,.07); }
+:root[data-theme="dark"] { --brand-2: #3e9f89; --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --brand-2: #3e9f89; --shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.3); }
+}
+
+body { letter-spacing: -.005em; }
+h2 { font-weight: 750; letter-spacing: -.02em; }
+
+/* Frosted-glass top bar and tab bar, like iOS */
+.topbar, .tabbar {
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+}
+.topbar { border-bottom-color: color-mix(in srgb, var(--line) 60%, transparent); }
+.topbar h1 { font-size: 1.05rem; font-weight: 700; text-align: center; }
+.tabbar { border-top-color: color-mix(in srgb, var(--line) 60%, transparent); }
+
+/* Tab icons are SVG line drawings (crisper than emoji) */
+.tabbar a svg { width: 26px; height: 26px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.tabbar a b { font-size: .66rem; font-weight: 600; margin-top: 3px; }
+.tabbar a[aria-current="page"] svg { stroke-width: 2.2; }
+.tabbar a[aria-current="page"] svg .fill { fill: currentColor; fill-opacity: .18; }
+
+/* Every new screen fades up gently */
+main > * { animation: rise .35s ease both; }
+main > *:nth-child(2) { animation-delay: .04s; }
+main > *:nth-child(3) { animation-delay: .08s; }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+/* Cards: more air and a hairline border (helps in dark mode) */
+.card { padding: 20px; border: 1px solid color-mix(in srgb, var(--line) 50%, transparent); }
+
+/* Buttons feel "pressable": they shrink a little when tapped */
+.btn, .option, .lesson-list a, .dict-list button.card, .levels button { transition: transform .12s ease, background .2s, box-shadow .2s; }
+.btn:active, .option:active, .lesson-list a:active, .dict-list button.card:active { transform: scale(.97); }
+.btn { border-radius: 14px; }
+.btn:not(.secondary) { background: linear-gradient(180deg, var(--brand-2), var(--brand)); }
+
+/* ----- Home hero card with progress ring ----- */
+.hero {
+  position: relative; overflow: hidden; color: #fff; border: 0;
+  background: radial-gradient(120% 140% at 100% 0%, #58b39d 0%, #2f7d6d 45%, #215a4f 100%);
+  display: flex; align-items: center; gap: 16px;
+}
+.hero::after { /* soft decorative circle */
+  content: ""; position: absolute; right: -40px; bottom: -60px; width: 180px; height: 180px;
+  border-radius: 50%; background: rgba(255,255,255,.08);
+}
+.hero h2 { color: #fff; margin: 0 0 4px; font-size: 1.4rem; }
+.hero p { margin: 0; color: rgba(255,255,255,.88); }
+.hero .ring { flex: 0 0 88px; height: 88px; position: relative; z-index: 1; }
+.hero .ring svg { width: 88px; height: 88px; transform: rotate(-90deg); }
+.hero .ring circle { fill: none; stroke-width: 9; }
+.hero .ring .track { stroke: rgba(255,255,255,.2); }
+.hero .ring .bar { stroke: #f6e7b4; stroke-linecap: round; }
+.hero .ring span { position: absolute; inset: 0; display: grid; place-items: center; font-weight: 800; font-size: 1.05rem; }
+.eyebrow { text-transform: uppercase; letter-spacing: .08em; font-size: .7rem; font-weight: 700; color: var(--brand); margin: 0 0 4px; }
+.meta { display: flex; gap: 8px; flex-wrap: wrap; margin: 6px 0 14px; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 14px; }
+.stats .card { margin: 0; padding: 14px 8px; text-align: center; }
+.stats strong { display: block; font-size: 1.4rem; color: var(--brand); line-height: 1.15; }
+.stats span { font-size: .72rem; color: var(--muted); }
+
+/* ----- Path ----- */
+.path::before { background: linear-gradient(var(--brand), var(--line) 40%); opacity: .6; }
+.unit .dot { box-shadow: 0 0 0 6px var(--bg); }
+.unit.unlocked .dot { background: color-mix(in srgb, var(--brand) 12%, var(--card)); }
+.unit.locked .card { opacity: .85; }
+.unit .progress { height: 6px; margin: 10px 0 4px; }
+
+/* ----- Lesson ----- */
+.lesson-progress { height: 6px; margin: 2px 0 14px; }
+.slide .card { padding: 22px 20px; }
+.slide h2 { font-size: 1.3rem; }
+.compare { border-left: 4px solid var(--brand); border-radius: 4px 14px 14px 4px; }
+.deck-bar::before { /* fades text as it slides under the buttons */
+  content: ""; position: absolute; left: 0; right: 0; top: -24px; height: 24px; pointer-events: none;
+  background: linear-gradient(transparent, var(--bg));
+}
+.job { border: 1px solid color-mix(in srgb, var(--brand) 40%, transparent); }
+
+/* ----- Quiz: lettered answer options (A, B, C) ----- */
+.options { counter-reset: opt; }
+.option { display: flex; align-items: center; gap: 12px; border-width: 1.5px; }
+.option::before {
+  counter-increment: opt; content: counter(opt, upper-alpha);
+  flex: 0 0 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+  font-weight: 700; font-size: .8rem; background: var(--soft); color: var(--muted);
+}
+.option.right::before { content: "✓"; background: var(--good); color: #fff; }
+.option.tried::before { content: "–"; background: var(--gentle); color: #fff; }
+.q, .q:first-of-type { background: color-mix(in srgb, var(--soft) 45%, transparent); border: 0; border-radius: 16px; padding: 14px; margin-top: 12px; }
+
+/* ----- Dictionary search box with a magnifier icon ----- */
+input[type="search"] {
+  padding-left: 42px; border-radius: 14px;
+  background: var(--card) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%238a9a94' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='9' cy='9' r='6'/%3E%3Cpath d='m14 14 4 4'/%3E%3C/svg%3E") 14px center no-repeat;
+}
+
+/* Popup slides up like an iOS sheet */
+dialog[open] { animation: sheet .28s cubic-bezier(.2,.9,.3,1.2); }
+@keyframes sheet { from { transform: translateY(30px); opacity: 0; } to { transform: none; opacity: 1; } }
+dialog::backdrop { background: rgba(10,20,17,.45); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+
+@media (prefers-reduced-motion: reduce) { main > *, dialog[open] { animation: none; } }

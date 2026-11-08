@@ -37,6 +37,7 @@ export async function render(main, [id]) {
     <div class="row spread"><a href="#/path" class="btn small secondary">‹ Path</a>
       <button class="btn small secondary" id="bm" aria-pressed="${!!s.bookmarks[id]}">${s.bookmarks[id] ? '🔖 Saved' : '🔖 Bookmark'}</button></div>
     <h2 style="margin-top:.6em">${esc(lesson.title)}</h2>
+    <div class="progress lesson-progress" aria-hidden="true"><i id="lp" style="width:${100 / total}%"></i></div>
     <div class="levels" role="group" aria-label="Explanation level">
       ${LEVELS.map(([k, label]) => `<button data-level="${k}" aria-pressed="${k === level}">${label}</button>`).join('')}
     </div>
@@ -84,6 +85,7 @@ export async function render(main, [id]) {
   deck.addEventListener('scroll', () => {
     const i = index();
     fitHeight();
+    $('#lp').style.width = ((i + 1) / total) * 100 + '%'; // lesson progress bar at the top
     $$('.dots i').forEach((d, k) => d.classList.toggle('on', k === i));
     $('#prev').disabled = i === 0;
     $('#next').disabled = i === total - 1;

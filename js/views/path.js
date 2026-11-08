@@ -21,7 +21,8 @@ export async function render(main) {
     const status = complete ? '✓ Done' : unlocked ? 'Open' : '🔒 Later';
 
     const body = lessons.length
-      ? `<p class="muted">${finished} / ${lessons.length} lessons</p>
+      ? `<div class="progress" aria-hidden="true"><i style="width:${(finished / lessons.length) * 100}%"></i></div>
+         <p class="muted" style="margin-top:0">${finished} / ${lessons.length} lessons</p>
          <ul class="lesson-list">${lessons.map((l) => `<li><a href="#/lesson/${l.id}">
            <span>${done[l.id] ? '✅' : '⚪'} ${esc(l.title)}</span><span class="tag">${l.minutes || 5} min</span></a></li>`).join('')}</ul>`
       : `<p><span class="tag">Full lessons coming in Phase 4</span></p><p>What you'll learn:</p>
